@@ -2,11 +2,11 @@ const path = require("path");
 
 module.exports = {
   mode: "production",
-  entry: "./index.ts",
+  entry: "./src/index.ts",
 
   output: {
     filename: "index.js",
-    path: path.resolve(__dirname, "src"),
+    path: path.resolve(__dirname, "build"),
   },
   resolve: {
     extensions: [".ts", ".js"],

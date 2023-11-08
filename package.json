@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx webpack"
+    "build": "npx webpack && sass src/style.scss build/style.css"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/Tzu101/FunTextDocumentation#readme",
   "dependencies": {
-    "funtext": "^1.5.4"
+    "funtext": "^1.5.6"
   },
   "devDependencies": {
     "@types/node": "^20.8.9",

@@ -4,64 +4,135 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FunText</title>
+
+    <!-- Code highlight library -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css"
+    />
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/typescript.min.js"></script>
     <script>
-      var exports = {};
+      hljs.highlightAll();
     </script>
+
     <!--<script src="node_modules/funtext/lib/index.min.js"></script>-->
     <!--<script src="https://unpkg.com/funtext"></script>-->
-    <!--<script src="src/index.js" defer></script>-->
+    <script src="build/index.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="build/style.css" />
   </head>
-  <body>
-    <header>
-      <h1>FunText</h1>
+  <body data-theme="light">
+    <header class="header">
+      <h1 id="funtext">FunText</h1>
     </header>
 
-    <nav>
-      <ul>
-        <li>
-          <h2>Basics</h2>
-          <ul>
-            <li>
-              <h3>About</h3>
+    <nav class="sidebar">
+      <ul class="list">
+        <li class="list__element">
+          <a class="list__link" href="#basics">Basics</a>
+
+          <ul class="list list--recursive">
+            <li class="list__element">
+              <a class="list__link" href="#basics__about">About</a>
             </li>
 
-            <li>
-              <h3>Instalation</h3>
+            <li class="list__element">
+              <a class="list__link" href="#basics__instalation">Instalation</a>
             </li>
           </ul>
         </li>
-        <li>
-          <h2>Documentation</h2>
 
-          <ul>
-            <li>
-              <h3>Getting started</h3>
+        <li class="list__element">
+          <a class="list__link" href="#documentation">Documentation</a>
+
+          <ul class="list list--recursive">
+            <li class="list__element">
+              <a class="list__link" href="#documentation__setup">Setup</a>
             </li>
 
-            <li>
-              <h3>Scope</h3>
+            <li class="list__element">
+              <a class="list__link" href="#documentation__scope">Scope</a>
             </li>
 
-            <li>
-              <h3>Animations</h3>
+            <li class="list__element">
+              <a class="list__link" href="#documentation__animations"
+                >Animations</a
+              >
             </li>
 
-            <li>
-              <h3>Options</h3>
+            <li class="list__element">
+              <a class="list__link" href="#documentation__options">Options</a>
             </li>
 
-            <li>
-              <h3>Control</h3>
+            <li class="list__element">
+              <a class="list__link" href="#documentation__controls">Controls</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="list__element">
+          <a class="list__link">Links</a>
+
+          <ul class="list list--recursive">
+            <li class="list__element">
+              <a class="list__link" href="https://www.npmjs.com/package/funtext"
+                >Npm</a
+              >
+            </li>
+
+            <li class="list__element">
+              <a class="list__link" href="https://github.com/Tzu101/FunText"
+                >Github</a
+              >
             </li>
           </ul>
         </li>
       </ul>
     </nav>
 
-    <section>Content</section>
+    <section class="content">
+      <section>
+        <h2 id="basics">Basics</h2>
+        <section>
+          <h3 id="basics__about">About</h3>
+        </section>
+        <section>
+          <h3 id="basics__instalation">Instalation</h3>
+        </section>
+      </section>
 
-    <footer>
-      <nav>Footer</nav>
-    </footer>
+      <section>
+        <h2 id="documentation">Documentation</h2>
+        <section>
+          <h3 id="documentation__setup">Setup</h3>
+        </section>
+        <section>
+          <h3 id="documentation__scope">Scope</h3>
+        </section>
+        <section>
+          <h3 id="documentation__animations">Animtions</h3>
+        </section>
+        <section>
+          <h3 id="documentation__options">Options</h3>
+        </section>
+        <section>
+          <h3 id="documentation__controls">Controls</h3>
+        </section>
+      </section>
+
+      <pre>
+          <code class="language-typescript">
+function sayHello() {
+    alert('Hello, world!');
+}
+
+type a = number
+const b: a = 5
+    
+// Call the function
+sayHello();
+          </code>
+        </pre>
+    </section>
   </body>
 </html>
