@@ -12,6 +12,8 @@
     />
     <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
     <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/typescript.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/markdown.min.js"></script>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/xml.min.js"></script>
     <script>
       hljs.highlightAll();
     </script>
@@ -91,32 +93,141 @@
     </nav>
 
     <section class="content">
-      <section>
-        <h2 id="basics">Basics</h2>
-        <section>
-          <h3 id="basics__about">About</h3>
+      <section class="container container--chapter">
+        <h2 class="title title--chapter" id="basics" index="1">Basics</h2>
+        <p class="text">
+          FunText is a lightweight and versatile npm library designed for text
+          animation.
+        </p>
+
+        <div class="seperator"></div>
+
+        <section class="container container--page">
+          <h3 class="title title--page" id="basics__about" index="1.1">
+            About
+          </h3>
+          <p class="text">
+            The aim of this project is to offer straightforward and readily
+            accessible animation choices for text-based elements. It empowers
+            users to craft entirely custom animations while maintaining complete
+            control over them. This is achieved through the incorporation of
+            newly standardized Shadow DOM technology.
+          </p>
         </section>
-        <section>
-          <h3 id="basics__instalation">Instalation</h3>
+
+        <div class="seperator"></div>
+
+        <section class="container container--page">
+          <h3 class="title title--page" id="basics__instalation" index="1.2">
+            Instalation
+          </h3>
+          <p class="text">
+            Element Plus can run on browsers that support
+            <a
+              class="text--link"
+              href="https://caniuse.com/?feats=mdn-javascript_builtins_regexp_dotall,mdn-javascript_builtins_regexp_lookbehind_assertion,mdn-javascript_builtins_regexp_named_capture_groups,mdn-javascript_builtins_regexp_property_escapes,mdn-javascript_builtins_symbol_asynciterator,mdn-javascript_functions_method_definitions_async_generator_methods,mdn-javascript_grammar_template_literals_template_literal_revision,mdn-javascript_operators_destructuring_rest_in_objects,mdn-javascript_operators_spread_spread_in_destructuring,promise-finally"
+              >ES2018</a
+            >.
+          </p>
+
+          <section class="container container--property">
+            <h4 class="title title--property" index="1.2.1">Package manager</h4>
+            <p class="text">
+              Using a package manager is recomended to allow the use of
+              bundlers.
+            </p>
+            <pre><code class="language-markdown">
+# NPM
+$ npm install funtext --save
+
+# Yarn
+$ yarn add funtext
+
+# PNPM
+$ pnpm install funtext
+</code></pre>
+          </section>
+
+          <section class="container container--property">
+            <h4 class="title title--property" index="1.2.2">
+              Import in Browser
+            </h4>
+            <p class="text">
+              Import Element Plus through browser HTML tags directly, and use
+              global variable <span class="text text--highlight">FunText</span>.
+            </p>
+            <pre><code class="language-xml">
+// unpkg
+&lt;script src="//unpkg.com/funtext"&gt;&lt;/script&gt;
+
+// jsdelivr
+&lt;script src="https://cdn.jsdelivr.net/npm/funtext"&gt;&lt;/script&gt;
+</code></pre>
+          </section>
         </section>
       </section>
 
-      <section>
-        <h2 id="documentation">Documentation</h2>
-        <section>
-          <h3 id="documentation__setup">Setup</h3>
+      <div class="seperator seperator--thick"></div>
+
+      <section class="container container--chapter">
+        <h2 class="title title--chapter" id="documentation" index="2">
+          Documentation
+        </h2>
+
+        <div class="seperator"></div>
+
+        <section class="container container--page">
+          <h3 class="title title--page" id="documentation__setup" index="2.1">
+            Setup
+          </h3>
         </section>
-        <section>
-          <h3 id="documentation__scope">Scope</h3>
+
+        <div class="seperator"></div>
+
+        <section class="container container--page">
+          <h3 class="title title--page" id="documentation__scope" index="2.2">
+            Scope
+          </h3>
+
+          <section class="container container--property">
+            <h4 class="title title--property" index="2.2.1">Build in</h4>
+          </section>
+
+          <section class="container container--property">
+            <h4 class="title title--property" index="2.2.2">Custom</h4>
+          </section>
         </section>
-        <section>
-          <h3 id="documentation__animations">Animtions</h3>
+
+        <div class="seperator"></div>
+
+        <section class="container container--page">
+          <h3
+            class="title title--page"
+            id="documentation__animations"
+            index="2.3"
+          >
+            Animations
+          </h3>
         </section>
-        <section>
-          <h3 id="documentation__options">Options</h3>
+
+        <div class="seperator"></div>
+
+        <section class="container container--page">
+          <h3 class="title title--page" id="documentation__options" index="2.4">
+            Options
+          </h3>
         </section>
-        <section>
-          <h3 id="documentation__controls">Controls</h3>
+
+        <div class="seperator"></div>
+
+        <section class="container container--page">
+          <h3
+            class="title title--page"
+            id="documentation__controls"
+            index="2.5"
+          >
+            Controls
+          </h3>
         </section>
       </section>
 

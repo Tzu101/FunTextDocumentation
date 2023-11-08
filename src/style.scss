@@ -15,16 +15,22 @@
   --border-color: var(--light-gray);
   --background--color: var(--almost-white);
   --highlight-color: rgb(25, 128, 25);
+  --unhighlight-color: rgb(47, 212, 47);
 
   @media (prefers-color-scheme: dark) {
     --text-color: var(--almost-white);
     --border-color: var(--dark-gray);
     --background--color: var(--almost-black);
     --highlight-color: rgb(47, 212, 47);
+    --unhighlight-color: rgb(25, 128, 25);
   }
 
   --border-style: 1px solid var(--border-color);
   --sidebar-width: 200px;
+}
+
+pre {
+  height: fit-content;
 }
 
 code {
@@ -44,13 +50,19 @@ h2,
 h3,
 h4,
 a,
-p {
+p,
+span {
   color: var(--text-color);
 }
 
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
   padding: 1rem 1.5rem;
   height: 50px;
+  background-color: var(--background--color);
   border-bottom: var(--border-style);
 
   display: flex;
@@ -102,5 +114,90 @@ p {
       text-decoration: underline;
       color: var(--highlight-color);
     }
+  }
+}
+
+.container {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  &--chapter {
+    margin-block: 1rem;
+  }
+
+  &--page {
+    margin-block: 0.75rem;
+  }
+
+  &--property {
+    margin-block: 0.5rem;
+  }
+}
+
+.title {
+  position: relative;
+  font-weight: bold;
+
+  &::before {
+    display: none;
+    position: absolute;
+    transform: translateX(-120%);
+
+    content: "#";
+    color: var(--highlight-color);
+  }
+
+  &:hover::before {
+    display: block;
+  }
+
+  &--chapter {
+    font-size: 1.5rem;
+  }
+
+  &--page {
+    font-size: 1.25rem;
+  }
+
+  &--property {
+    font-size: 1rem;
+  }
+}
+
+.text {
+  font-size: 1rem;
+
+  &--highlight {
+    text-decoration: underline;
+  }
+
+  &--link {
+    text-decoration: none;
+    color: var(--highlight-color);
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:visited {
+      color: var(--unhighlight-color);
+    }
+  }
+}
+
+.seperator {
+  width: 100%;
+  height: 1px;
+  border-top: var(--border-style);
+  margin-block: 0.5rem;
+
+  &--thick {
+    height: 2px;
+    border-bottom: var(--border-style);
+    border-color: var(--unhighlight-color);
+    margin-block: 1.25rem;
   }
 }

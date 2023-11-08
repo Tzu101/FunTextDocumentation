@@ -14,6 +14,7 @@
   --border-color: var(--light-gray);
   --background--color: var(--almost-white);
   --highlight-color: rgb(25, 128, 25);
+  --unhighlight-color: rgb(47, 212, 47);
   --border-style: 1px solid var(--border-color);
   --sidebar-width: 200px;
 }
@@ -23,7 +24,12 @@
     --border-color: var(--dark-gray);
     --background--color: var(--almost-black);
     --highlight-color: rgb(47, 212, 47);
+    --unhighlight-color: rgb(25, 128, 25);
   }
+}
+
+pre {
+  height: fit-content;
 }
 
 code {
@@ -44,13 +50,18 @@ h2,
 h3,
 h4,
 a,
-p {
+p,
+span {
   color: var(--text-color);
 }
 
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   padding: 1rem 1.5rem;
   height: 50px;
+  background-color: var(--background--color);
   border-bottom: var(--border-style);
   display: flex;
   justify-content: center;
@@ -72,7 +83,6 @@ p {
   justify-content: space-between;
   padding: 1rem 2rem;
   margin-left: var(--sidebar-width);
-  height: 100%;
 }
 
 .list {
@@ -97,6 +107,76 @@ p {
 .list__link:hover {
   text-decoration: underline;
   color: var(--highlight-color);
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.container--chapter {
+  margin-block: 1rem;
+}
+.container--page {
+  margin-block: 0.75rem;
+}
+.container--property {
+  margin-block: 0.5rem;
+}
+
+.title {
+  position: relative;
+  font-weight: bold;
+}
+.title::before {
+  display: none;
+  position: absolute;
+  transform: translateX(-120%);
+  content: "#";
+  color: var(--highlight-color);
+}
+.title:hover::before {
+  display: block;
+}
+.title--chapter {
+  font-size: 1.5rem;
+}
+.title--page {
+  font-size: 1.25rem;
+}
+.title--property {
+  font-size: 1rem;
+}
+
+.text {
+  font-size: 1rem;
+}
+.text--highlight {
+  text-decoration: underline;
+}
+.text--link {
+  text-decoration: none;
+  color: var(--highlight-color);
+}
+.text--link:hover {
+  text-decoration: underline;
+}
+.text--link:visited {
+  color: var(--unhighlight-color);
+}
+
+.seperator {
+  width: 100%;
+  height: 1px;
+  border-top: var(--border-style);
+  margin-block: 0.5rem;
+}
+.seperator--thick {
+  height: 2px;
+  border-bottom: var(--border-style);
+  border-color: var(--unhighlight-color);
+  margin-block: 1.25rem;
 }
 
 /*# sourceMappingURL=style.css.map */
