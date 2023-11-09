@@ -18,9 +18,10 @@
       hljs.highlightAll();
     </script>
 
-    <!--<script src="node_modules/funtext/lib/index.min.js"></script>-->
-    <!--<script src="https://unpkg.com/funtext"></script>-->
+    <!-- FunText import -->
     <script src="build/index.js" defer></script>
+
+    <!-- Style import -->
     <link rel="stylesheet" type="text/css" href="build/style.css" />
   </head>
   <body data-theme="light">
@@ -136,8 +137,7 @@
               Using a package manager is recomended to allow the use of
               bundlers.
             </p>
-            <pre><code class="language-markdown">
-# NPM
+            <pre><code class="language-markdown"># NPM
 $ npm install funtext --save
 
 # Yarn
@@ -156,8 +156,7 @@ $ pnpm install funtext
               Import Element Plus through browser HTML tags directly, and use
               global variable <span class="text text--highlight">FunText</span>.
             </p>
-            <pre><code class="language-xml">
-// unpkg
+            <pre><code class="language-xml">// unpkg
 &lt;script src="//unpkg.com/funtext"&gt;&lt;/script&gt;
 
 // jsdelivr
@@ -180,6 +179,47 @@ $ pnpm install funtext
           <h3 class="title title--page" id="documentation__setup" index="2.1">
             Setup
           </h3>
+          <p class="text">
+            To init a funtext instance we pass it a container and the list of
+            animations.
+          </p>
+
+          <pre><code class="language-xml">&lt;div id="funtext"&gt;This text is animated&lt;/div&gt;
+</code></pre>
+
+          <pre><code class="language-typescript">import { FunText, type InputAnimation } from "funtext";
+
+// Retrives the container
+const container = document.getElementById(
+  "funtext"
+);
+
+// Defines the animations
+const animations: InputAnimation[] = [
+  {
+    scope: "letter",
+    property: "translate",
+    duration: 1.5,
+    steps: "0 10px",
+    iteration: "infinite",
+    direction: "alternate",
+  },
+];
+
+if (container) {
+  // Builds the funtext instance
+  const funtext = new FunText(
+    container,
+    animations
+  );
+
+  // Replaces the content of the container with the funtext instance
+  funtext.mount();
+}
+</code></pre>
+
+          <p class="text">Result:</p>
+          <div id="funtext_example_setup">This text is animated</div>
         </section>
 
         <div class="seperator"></div>

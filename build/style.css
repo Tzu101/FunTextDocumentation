@@ -41,6 +41,13 @@ code {
   }
 }
 
+@media (prefers-color-scheme: dark) {
+  .hljs-keyword,
+  .hljs-attr {
+    filter: invert(1);
+  }
+}
+
 body {
   background: var(--background--color);
 }
