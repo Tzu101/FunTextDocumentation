@@ -71,8 +71,17 @@ span {
   background-color: var(--background--color);
   border-bottom: var(--border-style);
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+}
+.header__side {
+  width: 4rem;
+}
+.header__side--menu {
+  color: red;
+}
+.header__side--version {
+  color: var(--highlight-color);
 }
 
 .sidebar {
@@ -180,6 +189,11 @@ span {
   width: 100%;
   height: 1px;
   border-top: var(--border-style);
+  margin-block: 0.75rem;
+}
+.seperator--thin {
+  height: 0;
+  border-top: 1px dashed var(--border-color);
   margin-block: 0.5rem;
 }
 .seperator--thick {
