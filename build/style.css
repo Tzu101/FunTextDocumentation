@@ -123,13 +123,16 @@ span {
   gap: 1rem;
 }
 .container--chapter {
-  margin-block: 1rem;
+  margin-block-start: 1.5rem;
+  margin-block-end: 1rem;
 }
 .container--page {
-  margin-block: 0.75rem;
+  margin-block-start: 1rem;
+  margin-block-end: 0.75rem;
 }
 .container--property {
-  margin-block: 0.5rem;
+  margin-block-start: 0.75rem;
+  margin-block-end: 0.5rem;
 }
 
 .title {

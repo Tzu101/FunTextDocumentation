@@ -38,10 +38,8 @@ if (funtext_title_container) {
 }
 
 // Setup example
-const funtext_example_setup_container = document.getElementById(
-  "funtext_example_setup"
-);
-const funtext_example_setup_animations: InputAnimation[] = [
+const fun_setup_container = document.getElementById("fun_setup");
+const fun_setup_animations: InputAnimation[] = [
   {
     scope: "letter",
     property: "translate",
@@ -51,10 +49,86 @@ const funtext_example_setup_animations: InputAnimation[] = [
     direction: "alternate",
   },
 ];
-if (funtext_example_setup_container) {
-  const funtext_example_setup = new FunText(
-    funtext_example_setup_container,
-    funtext_example_setup_animations
+if (fun_setup_container) {
+  const fun_setup = new FunText(fun_setup_container, fun_setup_animations);
+  fun_setup.mount();
+}
+
+// Scope - Build-in example
+const fun_scope_buildin_word_container = document.getElementById(
+  "fun_scope_buildin_word"
+);
+const fun_scope_buildin_word_animations: InputAnimation[] = [
+  {
+    scope: "word",
+    property: "translate",
+    duration: 2,
+    steps: "0 10px",
+    iteration: "infinite",
+    direction: "alternate",
+    offset: 0.5,
+  },
+];
+
+const fun_scope_buildin_letter_container = document.getElementById(
+  "fun_scope_buildin_letter"
+);
+const fun_scope_buildin_letter_animations: InputAnimation[] = [
+  {
+    scope: "letter",
+    property: "translate",
+    duration: 1.5,
+    steps: "0 10px",
+    iteration: "infinite",
+    direction: "alternate",
+  },
+];
+
+if (fun_scope_buildin_word_container && fun_scope_buildin_letter_container) {
+  const fun_scope_buildin_word = new FunText(
+    fun_scope_buildin_word_container,
+    fun_scope_buildin_word_animations
   );
-  funtext_example_setup.mount();
+  fun_scope_buildin_word.mount();
+
+  const fun_scope_buildin_letter = new FunText(
+    fun_scope_buildin_letter_container,
+    fun_scope_buildin_letter_animations
+  );
+  fun_scope_buildin_letter.mount();
+}
+
+const fun_scope_custom_container = document.getElementById("fun_scope_custom");
+const fun_scope_custom_animations: InputAnimation[] = [
+  {
+    scope: {
+      split: "A",
+      priority: 0,
+    },
+    property: "translate",
+    duration: 1,
+    steps: ["0 -5px", "0 5px"],
+    iteration: "infinite",
+    direction: "alternate",
+    offset: 1,
+  },
+  {
+    scope: {
+      split: "B",
+      priority: 4,
+    },
+    property: "color",
+    duration: 1,
+    steps: "red",
+    iteration: "infinite",
+    direction: "alternate",
+    offset: 1,
+  },
+];
+if (fun_scope_custom_container) {
+  const fun_scope_custom = new FunText(
+    fun_scope_custom_container,
+    fun_scope_custom_animations
+  );
+  fun_scope_custom.mount();
 }

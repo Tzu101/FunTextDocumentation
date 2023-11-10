@@ -95,7 +95,7 @@
 
     <section class="content">
       <section class="container container--chapter">
-        <h2 class="title title--chapter" id="basics" index="1">Basics</h2>
+        <h2 class="title title--chapter" id="basics">Basics</h2>
         <p class="text">
           FunText is a lightweight and versatile npm library designed for text
           animation.
@@ -104,9 +104,7 @@
         <div class="seperator"></div>
 
         <section class="container container--page">
-          <h3 class="title title--page" id="basics__about" index="1.1">
-            About
-          </h3>
+          <h3 class="title title--page" id="basics__about">About</h3>
           <p class="text">
             The aim of this project is to offer straightforward and readily
             accessible animation choices for text-based elements. It empowers
@@ -119,7 +117,7 @@
         <div class="seperator"></div>
 
         <section class="container container--page">
-          <h3 class="title title--page" id="basics__instalation" index="1.2">
+          <h3 class="title title--page" id="basics__instalation">
             Instalation
           </h3>
           <p class="text">
@@ -132,7 +130,7 @@
           </p>
 
           <section class="container container--property">
-            <h4 class="title title--property" index="1.2.1">Package manager</h4>
+            <h4 class="title title--property">Package manager</h4>
             <p class="text">
               Using a package manager is recomended to allow the use of
               bundlers.
@@ -149,9 +147,7 @@ $ pnpm install funtext
           </section>
 
           <section class="container container--property">
-            <h4 class="title title--property" index="1.2.2">
-              Import in Browser
-            </h4>
+            <h4 class="title title--property">Import in Browser</h4>
             <p class="text">
               Import Element Plus through browser HTML tags directly, and use
               global variable <span class="text text--highlight">FunText</span>.
@@ -169,20 +165,17 @@ $ pnpm install funtext
       <div class="seperator seperator--thick"></div>
 
       <section class="container container--chapter">
-        <h2 class="title title--chapter" id="documentation" index="2">
-          Documentation
-        </h2>
+        <h2 class="title title--chapter" id="documentation">Documentation</h2>
 
         <div class="seperator"></div>
 
         <section class="container container--page">
-          <h3 class="title title--page" id="documentation__setup" index="2.1">
-            Setup
-          </h3>
+          <h3 class="title title--page" id="documentation__setup">Setup</h3>
           <p class="text">
             To init a funtext instance we pass it a container and the list of
             animations.
           </p>
+          <p class="text">Example:</p>
 
           <pre><code class="language-xml">&lt;div id="funtext"&gt;This text is animated&lt;/div&gt;
 </code></pre>
@@ -219,33 +212,119 @@ if (container) {
 </code></pre>
 
           <p class="text">Result:</p>
-          <div id="funtext_example_setup">This text is animated</div>
+          <div id="fun_setup">This text is animated</div>
         </section>
 
         <div class="seperator"></div>
 
         <section class="container container--page">
-          <h3 class="title title--page" id="documentation__scope" index="2.2">
-            Scope
-          </h3>
+          <h3 class="title title--page" id="documentation__scope">Scope</h3>
+          <p class="text">
+            A scope is an animation property that determines how the text is
+            divided into individual elements.
+          </p>
 
           <section class="container container--property">
-            <h4 class="title title--property" index="2.2.1">Build in</h4>
+            <h4 class="title title--property">Build-in</h4>
+            <p class="text">
+              There are two build-in scopes,
+              <span class="text text--highlight">word</span> and
+              <span class="text text--highlight">letter</span>.
+            </p>
+            <p class="text">Example:</p>
+
+            <pre><code class="language-xml">&lt;div id="word"&gt;Scoped into words&lt;/div&gt;
+&lt;div id="letter"&gt;Scoped into letters&lt;/div&gt;
+</code></pre>
+
+            <pre><code class="language-typescript">const word_container = document.getElementById(
+  "word"
+);
+const word_animations = [
+  {
+    scope: "word",
+    property: "translate",
+    duration: 2,
+    steps: "0 10px",
+    iteration: "infinite",
+    direction: "alternate",
+    offset: 0.5,
+  },
+];
+const funtext_word = new FunText(word_container, word_animations)
+funtext_word.mount()
+
+const letter_container = document.getElementById(
+  "letter"
+  );
+  const letter_animations: InputAnimation[] = [
+  {
+    scope: "letter",
+    property: "translate",
+    duration: 1.5,
+    steps: "0 10px",
+    iteration: "infinite",
+    direction: "alternate",
+  },
+];
+const funtext_letter = new FunText(letter_container, letter_animations)
+funtext_word.mount()
+</code></pre>
+            <p class="text">Result:</p>
+            <div id="fun_scope_buildin_word">Scoped into words</div>
+            <div id="fun_scope_buildin_letter">Scoped into letters</div>
           </section>
 
           <section class="container container--property">
-            <h4 class="title title--property" index="2.2.2">Custom</h4>
+            <h4 class="title title--property">Custom</h4>
+            <p class="text">
+              It is also possible to define a custom scope. A scope has two
+              properties, <span class="text text--highlight">split</span> and
+              <span class="text text--highlight">priority</span>. Split is
+              either a string or a regex defining how the text is divided and
+              the priority is a number that determines in what order the scope
+              will be applied. Lower scopes get applied first (letter has
+              priority 3 and word has priority 1).
+            </p>
+
+            <p class="text">Example:</p>
+            <pre><code class="language-typescript">const animations = [
+  {
+    scope: {
+      split: "A",
+      priority: 0,
+    },
+    property: "translate",
+    duration: 1,
+    steps: ["0 -5px", "0 5px"],
+    iteration: "infinite",
+    direction: "alternate",
+    offset: 1,
+  },
+  {
+    scope: {
+      split: "B",
+      priority: 4,
+    },
+    property: "color",
+    duration: 1,
+    steps: "red",
+    iteration: "infinite",
+    direction: "alternate",
+    offset: 1,
+  },
+];
+</code></pre>
+
+            <p class="text">Result:</p>
+            <div id="fun_scope_custom">cccBcccAcccBccc</div>
           </section>
         </section>
 
         <div class="seperator"></div>
 
         <section class="container container--page">
-          <h3
-            class="title title--page"
-            id="documentation__animations"
-            index="2.3"
-          >
+          <h3 class="title title--page" id="documentation__animations">
             Animations
           </h3>
         </section>
@@ -253,19 +332,13 @@ if (container) {
         <div class="seperator"></div>
 
         <section class="container container--page">
-          <h3 class="title title--page" id="documentation__options" index="2.4">
-            Options
-          </h3>
+          <h3 class="title title--page" id="documentation__options">Options</h3>
         </section>
 
         <div class="seperator"></div>
 
         <section class="container container--page">
-          <h3
-            class="title title--page"
-            id="documentation__controls"
-            index="2.5"
-          >
+          <h3 class="title title--page" id="documentation__controls">
             Controls
           </h3>
         </section>

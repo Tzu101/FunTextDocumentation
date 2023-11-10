@@ -132,15 +132,18 @@ span {
   gap: 1rem;
 
   &--chapter {
-    margin-block: 1rem;
+    margin-block-start: 1.5rem;
+    margin-block-end: 1rem;
   }
 
   &--page {
-    margin-block: 0.75rem;
+    margin-block-start: 1rem;
+    margin-block-end: 0.75rem;
   }
 
   &--property {
-    margin-block: 0.5rem;
+    margin-block-start: 0.75rem;
+    margin-block-end: 0.5rem;
   }
 }
 
