@@ -13,6 +13,7 @@ $max-mobile: 768px;
   --dark-gray: rgb(107, 107, 111);
   --almost-black: rgb(19, 19, 25);
 
+  --void: white;
   --text-color: var(--almost-black);
   --border-color: var(--light-gray);
   --background--color: var(--almost-white);
@@ -20,6 +21,7 @@ $max-mobile: 768px;
   --unhighlight-color: rgb(47, 212, 47);
 
   @media (prefers-color-scheme: dark) {
+    --void: black;
     --text-color: var(--almost-white);
     --border-color: var(--dark-gray);
     --background--color: var(--almost-black);
@@ -39,15 +41,30 @@ pre {
 code {
   font-family: Consolas;
 
-  @media (prefers-color-scheme: dark) {
+  /*@media (prefers-color-scheme: dark) {
     filter: invert(1);
-  }
+  }*/
 }
 
-.hljs-keyword,
-.hljs-attr {
-  @media (prefers-color-scheme: dark) {
-    filter: invert(1);
+.hljs {
+  color: var(--text-color);
+  background-color: var(--void);
+
+  &-name,
+  &-attr,
+  &-comment {
+    color: var(--border-color) !important;
+  }
+
+  &-string,
+  &-number,
+  &-title {
+    color: var(--highlight-color);
+  }
+
+  &-variable,
+  &-section {
+    color: var(--unhighlight-color);
   }
 }
 
@@ -103,6 +120,7 @@ span {
 .sidebar {
   position: fixed;
   top: 50px;
+  left: 0;
   width: var(--sidebar-width);
 
   padding: 1rem 1.25rem;
@@ -111,6 +129,7 @@ span {
 
   z-index: 2;
   background-color: var(--background--color);
+  transition: left 0.5s ease-out;
 
   @media (max-width: $max-mobile) {
     left: calc(var(--sidebar-width) * -1 + var(--sidebar-slide));
@@ -130,8 +149,7 @@ span {
 .background {
   position: fixed;
   top: 50px;
-  left: var(--sidebar-width);
-  width: calc(100% - var(--sidebar-width));
+  width: 100%;
   height: calc(100vh - 50px);
   z-index: 1;
 
@@ -251,6 +269,26 @@ span {
     &:visited {
       color: var(--unhighlight-color);
     }
+  }
+}
+
+.panel {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  color: var(--text-color);
+  background-color: var(--background--color);
+  border: var(--border-style);
+
+  &:hover {
+    padding: calc(0.5rem - 1px) calc(1rem - 1px);
+    color: var(--highlight-color);
+    border: 2px solid var(--highlight-color);
   }
 }
 

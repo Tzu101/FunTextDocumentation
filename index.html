@@ -417,6 +417,88 @@ const object_animations = [
           <h3 class="title title--page" id="documentation__animations">
             Animations
           </h3>
+
+          <p class="text">
+            Animations have all the standard properties regular css animations
+            have like: <span class="text text--highlight">duration</span>,
+            <span class="text text--highlight">delay</span>,
+            <span class="text text--highlight">iteration-count</span>,
+            <span class="text text--highlight">direction</span>,
+            <span class="text text--highlight">timing-function</span>,
+            <span class="text text--highlight">fill-mode</span> and
+            <span class="text text--highlight">play-state</span>, a
+            <span class="text text--highlight">property</span>
+            that defines the property that will be animated, as well as some
+            custom properties like
+            <span class="text text--highlight">offset</span> and
+            <span class="text text--highlight">sync</span>.
+
+            <div class="seperator seperator--thin"></div>
+
+            <section class="container container--property">
+              <h4 class="title title--property">Offset</h4>
+              <p class="text">Offset defines the delay between animations in the same scope.</p>
+
+              <p class="text">Example:</p>
+              <pre><code class="language-typescript">const offset_none = [
+  {
+    scope: "letter",
+    property: "opacity",
+    duration: 5,
+    steps: "0",
+    fill: "forwards",
+    offset: 0,
+  },
+];
+
+const offset_small = [
+  {
+    scope: "letter",
+    property: "opacity",
+    duration: 5,
+    steps: "0",
+    fill: "forwards",
+    offset: 0.1, // Default
+  },
+];
+
+const offset_large = [
+  {
+    scope: "letter",
+    property: "opacity",
+    duration: 5,
+    steps: "0",
+    fill: "forwards",
+    offset: 0.5,
+  },
+];
+
+const offset_custom = [
+  {
+    scope: "letter",
+    property: "opacity",
+    duration: 5,
+    steps: "0",
+    fill: "forwards",
+    offset: (index, priority) => {
+      return index * index * 0.05;
+    },
+  },
+];
+</code></pre>
+            
+            <p class="text">Result:</p>
+            <div id="fun_animations_offset_none">This has no offset</div>
+            <div id="fun_animations_offset_small">This has a small offset</div>
+            <div id="fun_animations_offset_large">This has a large offset</div>
+            <div id="fun_animations_offset_custom">This has a custom offset</div>
+
+            <div class="panel">
+              <button class="button" id="fun_animations_offset_button">Play</button>
+            </div>
+            </section>
+
+          </p>
         </section>
 
         <div class="seperator"></div>

@@ -12,6 +12,7 @@ const background = document.getElementById("background");
 
 let isMobile = window.innerWidth <= maxMobile;
 let isOpen = false;
+
 function updateMenu() {
   if (close) {
     if (isMobile && isOpen) {
@@ -37,6 +38,7 @@ function updateMenu() {
     }
   }
 }
+updateMenu();
 
 window.addEventListener("resize", () => {
   const wasMobile = isMobile;
@@ -277,4 +279,113 @@ if (
     fun_steps_object_animations
   );
   fun_steps_object.mount();
+}
+
+// Offset example
+const fun_animations_offset_none_container = document.getElementById(
+  "fun_animations_offset_none"
+);
+const fun_animations_offset_none_animations: InputAnimation[] = [
+  {
+    scope: "letter",
+    property: "opacity",
+    duration: 5,
+    steps: "0",
+    fill: "forwards",
+    offset: 0,
+  },
+];
+
+const fun_animations_offset_small_container = document.getElementById(
+  "fun_animations_offset_small"
+);
+const fun_animations_offset_small_animations: InputAnimation[] = [
+  {
+    scope: "letter",
+    property: "opacity",
+    duration: 5,
+    steps: "0",
+    fill: "forwards",
+    offset: 0.1, // Default
+  },
+];
+
+const fun_animations_offset_large_container = document.getElementById(
+  "fun_animations_offset_large"
+);
+const fun_animations_offset_large_animations: InputAnimation[] = [
+  {
+    scope: "letter",
+    property: "opacity",
+    duration: 5,
+    steps: "0",
+    fill: "forwards",
+    offset: 0.5,
+  },
+];
+
+const fun_animations_offset_custom_container = document.getElementById(
+  "fun_animations_offset_custom"
+);
+const fun_animations_offset_custom_animations: InputAnimation[] = [
+  {
+    scope: "letter",
+    property: "opacity",
+    duration: 5,
+    steps: "0",
+    fill: "forwards",
+    offset: (index, priority) => {
+      return index * index * 0.05;
+    },
+  },
+];
+
+if (
+  fun_animations_offset_none_container &&
+  fun_animations_offset_small_container &&
+  fun_animations_offset_large_container &&
+  fun_animations_offset_custom_container
+) {
+  const fun_animations_offset_none = new FunText(
+    fun_animations_offset_none_container,
+    fun_animations_offset_none_animations
+  );
+  fun_animations_offset_none.mount();
+  fun_animations_offset_none.pauseAll();
+
+  const fun_animations_offset_small = new FunText(
+    fun_animations_offset_small_container,
+    fun_animations_offset_small_animations
+  );
+  fun_animations_offset_small.mount();
+  fun_animations_offset_small.pauseAll();
+
+  const fun_animations_offset_large = new FunText(
+    fun_animations_offset_large_container,
+    fun_animations_offset_large_animations
+  );
+  fun_animations_offset_large.mount();
+  fun_animations_offset_large.pauseAll();
+
+  const fun_animations_offset_custom = new FunText(
+    fun_animations_offset_custom_container,
+    fun_animations_offset_custom_animations
+  );
+  fun_animations_offset_custom.mount();
+  fun_animations_offset_custom.pauseAll();
+
+  const play_button = document.getElementById("fun_animations_offset_button");
+  if (play_button) {
+    play_button.addEventListener("click", () => {
+      fun_animations_offset_none.resetAll();
+      fun_animations_offset_small.resetAll();
+      fun_animations_offset_large.resetAll();
+      fun_animations_offset_custom.resetAll();
+
+      fun_animations_offset_none.playAll();
+      fun_animations_offset_small.playAll();
+      fun_animations_offset_large.playAll();
+      fun_animations_offset_custom.playAll();
+    });
+  }
 }
