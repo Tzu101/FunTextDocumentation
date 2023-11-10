@@ -18,6 +18,12 @@
       hljs.highlightAll();
     </script>
 
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/893f9d39c9.js"
+      crossorigin="anonymous"
+    ></script>
+
     <!-- Script import -->
     <script src="build/index.js" defer></script>
 
@@ -26,14 +32,30 @@
   </head>
   <body data-theme="light">
     <header class="header">
-      <div class="header__side header__side--menu">Menu</div>
+      <div class="header__side">
+        <i
+          class="icon fa-solid fa-bars fa-lg"
+          id="menu"
+          onclick="openMenu()"
+        ></i>
+      </div>
       <h1 id="funtext">FunText</h1>
       <p class="header__side header__side--version" id="funtext_version">
         Version
       </p>
     </header>
 
-    <nav class="sidebar">
+    <div class="background" id="background" style="display: none"></div>
+
+    <nav class="sidebar" id="sidebar" style="--sidebar-slide: 0">
+      <div class="sidebar__close">
+        <i
+          class="icon fa-solid fa-xmark fa-xl"
+          id="close"
+          onclick="closeMenu()"
+        ></i>
+      </div>
+
       <ul class="list">
         <li class="list__element">
           <a class="list__link" href="#basics">Basics</a>

@@ -17,6 +17,7 @@
   --unhighlight-color: rgb(47, 212, 47);
   --border-style: 1px solid var(--border-color);
   --sidebar-width: 200px;
+  --sidebar-slide: 0;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -62,6 +63,18 @@ span {
   color: var(--text-color);
 }
 
+.icon {
+  color: var(--text-color);
+}
+.icon:hover {
+  color: var(--highlight-color);
+}
+@media (min-width: 768px) {
+  .icon {
+    display: none;
+  }
+}
+
 .header {
   position: sticky;
   top: 0;
@@ -77,9 +90,6 @@ span {
 .header__side {
   width: 4rem;
 }
-.header__side--menu {
-  color: red;
-}
 .header__side--version {
   color: var(--highlight-color);
 }
@@ -91,6 +101,34 @@ span {
   padding: 1rem 1.25rem;
   height: 100vh;
   border-right: var(--border-style);
+  z-index: 2;
+  background-color: var(--background--color);
+}
+@media (max-width: 768px) {
+  .sidebar {
+    left: calc(var(--sidebar-width) * -1 + var(--sidebar-slide));
+  }
+}
+.sidebar__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+@media (min-width: 768px) {
+  .sidebar__close {
+    display: none;
+  }
+}
+
+.background {
+  position: fixed;
+  top: 50px;
+  left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  height: calc(100vh - 50px);
+  z-index: 1;
+  background-color: black;
+  opacity: 0.45;
 }
 
 .content {
@@ -99,6 +137,11 @@ span {
   justify-content: space-between;
   padding: 1rem 2rem;
   margin-left: var(--sidebar-width);
+}
+@media (max-width: 768px) {
+  .content {
+    margin-left: 0;
+  }
 }
 
 .list {

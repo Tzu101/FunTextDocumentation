@@ -3,6 +3,62 @@ import { FunText, type AnimationId, type InputAnimation } from "funtext";
 // Funtext latest version
 const apiUrl = "https://registry.npmjs.org/funtext/latest";
 
+// Menu control
+const maxMobile = 768;
+const sliderWidth = "200px";
+const sidebar = document.getElementById("sidebar");
+const close = document.getElementById("close");
+const background = document.getElementById("background");
+
+let isMobile = window.innerWidth <= maxMobile;
+let isOpen = false;
+function updateMenu() {
+  if (close) {
+    if (isMobile && isOpen) {
+      close.style.setProperty("display", "block");
+    } else {
+      close.style.setProperty("display", "none");
+    }
+  }
+
+  if (sidebar) {
+    if (isOpen) {
+      sidebar.style.setProperty("--sidebar-slide", sliderWidth);
+    } else {
+      sidebar.style.setProperty("--sidebar-slide", "0px");
+    }
+  }
+
+  if (background) {
+    if (isMobile && isOpen) {
+      background.style.setProperty("display", "block");
+    } else {
+      background.style.setProperty("display", "none");
+    }
+  }
+}
+
+window.addEventListener("resize", () => {
+  const wasMobile = isMobile;
+  isMobile = window.innerWidth <= maxMobile;
+
+  if (wasMobile !== isMobile) {
+    updateMenu();
+  }
+});
+
+function openMenu() {
+  isOpen = true;
+  updateMenu();
+}
+(window as any).openMenu = openMenu;
+
+function closeMenu() {
+  isOpen = false;
+  updateMenu();
+}
+(window as any).closeMenu = closeMenu;
+
 // Use the fetch function to make a GET request to the URL
 fetch(apiUrl)
   .then((response) => {

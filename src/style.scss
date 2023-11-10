@@ -1,3 +1,5 @@
+$max-mobile: 768px;
+
 * {
   margin: 0;
   padding: 0;
@@ -27,6 +29,7 @@
 
   --border-style: 1px solid var(--border-color);
   --sidebar-width: 200px;
+  --sidebar-slide: 0;
 }
 
 pre {
@@ -62,6 +65,18 @@ span {
   color: var(--text-color);
 }
 
+.icon {
+  color: var(--text-color);
+
+  &:hover {
+    color: var(--highlight-color);
+  }
+
+  @media (min-width: $max-mobile) {
+    display: none;
+  }
+}
+
 .header {
   position: sticky;
   top: 0;
@@ -79,10 +94,6 @@ span {
   &__side {
     width: 4rem;
 
-    &--menu {
-      color: red;
-    }
-
     &--version {
       color: var(--highlight-color);
     }
@@ -97,6 +108,35 @@ span {
   padding: 1rem 1.25rem;
   height: 100vh;
   border-right: var(--border-style);
+
+  z-index: 2;
+  background-color: var(--background--color);
+
+  @media (max-width: $max-mobile) {
+    left: calc(var(--sidebar-width) * -1 + var(--sidebar-slide));
+  }
+
+  &__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    @media (min-width: $max-mobile) {
+      display: none;
+    }
+  }
+}
+
+.background {
+  position: fixed;
+  top: 50px;
+  left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  height: calc(100vh - 50px);
+  z-index: 1;
+
+  background-color: black;
+  opacity: 0.45;
 }
 
 .content {
@@ -106,6 +146,10 @@ span {
 
   padding: 1rem 2rem;
   margin-left: var(--sidebar-width);
+
+  @media (max-width: $max-mobile) {
+    margin-left: 0;
+  }
 }
 
 .list {
