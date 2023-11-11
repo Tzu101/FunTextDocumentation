@@ -247,6 +247,12 @@ if (container) {
 
           <p class="text">Result:</p>
           <div id="fun_setup">This text is animated</div>
+
+          <div class="panel">
+            <button class="button" id="fun_setup_play">Play</button>
+            <button class="button" id="fun_setup_pause">Pause</button>
+            <button class="button" id="fun_setup_reset">Reset</button>
+          </div>
         </section>
 
         <div class="seperator"></div>
@@ -286,6 +292,13 @@ const word_animations = [
     direction: "alternate",
     offset: 0.5,
   },
+  {
+    scope: "letter",
+    property: "color",
+    duration: 9,
+    steps: ["", "yellow", "orange", "red", "lime", "green", "blue", "purple"],
+    iteration: "infinite",
+  },
 ];
 const funtext_word = new FunText(word_container, word_animations)
 funtext_word.mount()
@@ -307,6 +320,12 @@ funtext_word.mount()
             <p class="text">Result:</p>
             <div id="fun_scope_buildin_word">Scoped into words</div>
             <div id="fun_scope_buildin_letter">Scoped into letters</div>
+
+            <div class="panel">
+              <button class="button" id="fun_scope_buildin_play">Play</button>
+              <button class="button" id="fun_scope_buildin_pause">Pause</button>
+              <button class="button" id="fun_scope_buildin_reset">Reset</button>
+            </div>
           </section>
 
           <div class="seperator seperator--thin"></div>
@@ -332,7 +351,10 @@ funtext_word.mount()
     },
     property: "translate",
     duration: 1,
-    steps: ["0 -5px", "0 5px"],
+    steps: {
+      0.1: "0 -5px",
+      100: "0 5px",
+    },
     iteration: "infinite",
     direction: "alternate",
     offset: 1,
@@ -354,6 +376,12 @@ funtext_word.mount()
 
             <p class="text">Result:</p>
             <div id="fun_scope_custom">cccBcccAcccBccc</div>
+
+            <div class="panel">
+              <button class="button" id="fun_scope_custom_play">Play</button>
+              <button class="button" id="fun_scope_custom_pause">Pause</button>
+              <button class="button" id="fun_scope_custom_reset">Reset</button>
+            </div>
           </section>
         </section>
 
@@ -373,9 +401,9 @@ funtext_word.mount()
   {
     scope: "letter",
     property: "color",
-    duration: 5,
+    duration: 10,
     steps: "red",
-    iteration: "infinite",
+    fill: "forwards",
   },
 ];
 
@@ -383,9 +411,9 @@ const array_animations = [
   {
     scope: "letter",
     property: "color",
-    duration: 5,
-    steps: ["blue", "green", "yellow", "red"],
-    iteration: "infinite",
+    duration: 10,
+    steps: ["", "blue", "green", "yellow", "red"], // Invalid/Empty strings are replaces with default values
+    fill: "forwards",
   },
 ];
 
@@ -393,14 +421,14 @@ const object_animations = [
   {
     scope: "letter",
     property: "color",
-    duration: 5,
+    duration: 10,
     steps: {
       70: "blue",
       85: "green",
       95: "yellow",
       100: "red",
     },
-    iteration: "infinite",
+    fill: "forwards",
   },
 ];
 </code></pre>
@@ -409,6 +437,12 @@ const object_animations = [
           <div id="fun_steps_string">Steps are a string</div>
           <div id="fun_steps_array">Steps are an array</div>
           <div id="fun_steps_object">Steps are an object</div>
+
+          <div class="panel">
+            <button class="button" id="fun_steps_play">Play</button>
+            <button class="button" id="fun_steps_pause">Pause</button>
+            <button class="button" id="fun_steps_reset">Reset</button>
+          </div>
         </section>
 
         <div class="seperator"></div>
@@ -494,7 +528,9 @@ const offset_custom = [
             <div id="fun_animations_offset_custom">This has a custom offset</div>
 
             <div class="panel">
-              <button class="button" id="fun_animations_offset_button">Play</button>
+              <button class="button" id="fun_animations_offset_play">Play</button>
+              <button class="button" id="fun_animations_offset_pause">Pause</button>
+              <button class="button" id="fun_animations_offset_reset">Reset</button>
             </div>
             </section>
 

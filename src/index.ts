@@ -1,4 +1,9 @@
-import { FunText, type AnimationId, type InputAnimation } from "funtext";
+import {
+  FunText,
+  type AnimationId,
+  type InputAnimation,
+  type InputOptions,
+} from "funtext";
 
 // Funtext latest version
 const apiUrl = "https://registry.npmjs.org/funtext/latest";
@@ -134,10 +139,38 @@ const fun_setup_animations: InputAnimation[] = [
     iteration: "infinite",
     direction: "alternate",
   },
+  {
+    scope: "letter",
+    property: "color",
+    duration: 9,
+    steps: ["", "yellow", "orange", "red", "lime", "green", "blue", "purple"],
+    iteration: "infinite",
+  },
 ];
 if (fun_setup_container) {
   const fun_setup = new FunText(fun_setup_container, fun_setup_animations);
-  fun_setup.mount();
+  fun_setup.mount()?.pauseAll();
+
+  const play_button = document.getElementById("fun_setup_play");
+  if (play_button) {
+    play_button.addEventListener("click", () => {
+      fun_setup.playAll();
+    });
+  }
+
+  const pause_button = document.getElementById("fun_setup_pause");
+  if (pause_button) {
+    pause_button.addEventListener("click", () => {
+      fun_setup.pauseAll();
+    });
+  }
+
+  const reset_button = document.getElementById("fun_setup_reset");
+  if (reset_button) {
+    reset_button.addEventListener("click", () => {
+      fun_setup.resetAll();
+    });
+  }
 }
 
 // Scope Build-in example
@@ -175,13 +208,37 @@ if (fun_scope_buildin_word_container && fun_scope_buildin_letter_container) {
     fun_scope_buildin_word_container,
     fun_scope_buildin_word_animations
   );
-  fun_scope_buildin_word.mount();
+  fun_scope_buildin_word.mount()?.pauseAll();
 
   const fun_scope_buildin_letter = new FunText(
     fun_scope_buildin_letter_container,
     fun_scope_buildin_letter_animations
   );
-  fun_scope_buildin_letter.mount();
+  fun_scope_buildin_letter.mount()?.pauseAll();
+
+  const play_button = document.getElementById("fun_scope_buildin_play");
+  if (play_button) {
+    play_button.addEventListener("click", () => {
+      fun_scope_buildin_word.playAll();
+      fun_scope_buildin_letter.playAll();
+    });
+  }
+
+  const pause_button = document.getElementById("fun_scope_buildin_pause");
+  if (pause_button) {
+    pause_button.addEventListener("click", () => {
+      fun_scope_buildin_word.pauseAll();
+      fun_scope_buildin_letter.pauseAll();
+    });
+  }
+
+  const reset_button = document.getElementById("fun_scope_buildin_reset");
+  if (reset_button) {
+    reset_button.addEventListener("click", () => {
+      fun_scope_buildin_word.resetAll();
+      fun_scope_buildin_letter.resetAll();
+    });
+  }
 }
 
 // Scope Custom example
@@ -194,7 +251,10 @@ const fun_scope_custom_animations: InputAnimation[] = [
     },
     property: "translate",
     duration: 1,
-    steps: ["0 -5px", "0 5px"],
+    steps: {
+      0.1: "0 -5px",
+      100: "0 5px",
+    },
     iteration: "infinite",
     direction: "alternate",
     offset: 1,
@@ -217,7 +277,28 @@ if (fun_scope_custom_container) {
     fun_scope_custom_container,
     fun_scope_custom_animations
   );
-  fun_scope_custom.mount();
+  fun_scope_custom.mount()?.pauseAll();
+
+  const play_button = document.getElementById("fun_scope_custom_play");
+  if (play_button) {
+    play_button.addEventListener("click", () => {
+      fun_scope_custom.playAll();
+    });
+  }
+
+  const pause_button = document.getElementById("fun_scope_custom_pause");
+  if (pause_button) {
+    pause_button.addEventListener("click", () => {
+      fun_scope_custom.pauseAll();
+    });
+  }
+
+  const reset_button = document.getElementById("fun_scope_custom_reset");
+  if (reset_button) {
+    reset_button.addEventListener("click", () => {
+      fun_scope_custom.resetAll();
+    });
+  }
 }
 
 // Steps example
@@ -226,9 +307,9 @@ const fun_steps_string_animations: InputAnimation[] = [
   {
     scope: "letter",
     property: "color",
-    duration: 5,
+    duration: 10,
     steps: "red",
-    iteration: "infinite",
+    fill: "forwards",
   },
 ];
 
@@ -237,9 +318,9 @@ const fun_steps_array_animations: InputAnimation[] = [
   {
     scope: "letter",
     property: "color",
-    duration: 5,
-    steps: ["blue", "green", "yellow", "red"],
-    iteration: "infinite",
+    duration: 10,
+    steps: ["", "blue", "green", "yellow", "red"],
+    fill: "forwards",
   },
 ];
 
@@ -248,14 +329,14 @@ const fun_steps_object_animations: InputAnimation[] = [
   {
     scope: "letter",
     property: "color",
-    duration: 5,
+    duration: 10,
     steps: {
       70: "blue",
       85: "green",
       95: "yellow",
       100: "red",
     },
-    iteration: "infinite",
+    fill: "forwards",
   },
 ];
 
@@ -268,17 +349,45 @@ if (
     fun_steps_string_container,
     fun_steps_string_animations
   );
-  fun_steps_string.mount();
+  fun_steps_string.mount()?.pauseAll();
+
   const fun_steps_array = new FunText(
     fun_steps_array_container,
     fun_steps_array_animations
   );
-  fun_steps_array.mount();
+  fun_steps_array.mount()?.pauseAll();
   const fun_steps_object = new FunText(
     fun_steps_object_container,
     fun_steps_object_animations
   );
-  fun_steps_object.mount();
+  fun_steps_object.mount()?.pauseAll();
+
+  const play_button = document.getElementById("fun_steps_play");
+  if (play_button) {
+    play_button.addEventListener("click", () => {
+      fun_steps_string.playAll();
+      fun_steps_array.playAll();
+      fun_steps_object.playAll();
+    });
+  }
+
+  const pause_button = document.getElementById("fun_steps_pause");
+  if (pause_button) {
+    pause_button.addEventListener("click", () => {
+      fun_steps_string.pauseAll();
+      fun_steps_array.pauseAll();
+      fun_steps_object.pauseAll();
+    });
+  }
+
+  const reset_button = document.getElementById("fun_steps_reset");
+  if (reset_button) {
+    reset_button.addEventListener("click", () => {
+      fun_steps_string.resetAll();
+      fun_steps_array.resetAll();
+      fun_steps_object.resetAll();
+    });
+  }
 }
 
 // Offset example
@@ -350,42 +459,53 @@ if (
     fun_animations_offset_none_container,
     fun_animations_offset_none_animations
   );
-  fun_animations_offset_none.mount();
-  fun_animations_offset_none.pauseAll();
+  fun_animations_offset_none.mount()?.pauseAll();
 
   const fun_animations_offset_small = new FunText(
     fun_animations_offset_small_container,
     fun_animations_offset_small_animations
   );
-  fun_animations_offset_small.mount();
-  fun_animations_offset_small.pauseAll();
+  fun_animations_offset_small.mount()?.pauseAll();
 
   const fun_animations_offset_large = new FunText(
     fun_animations_offset_large_container,
     fun_animations_offset_large_animations
   );
-  fun_animations_offset_large.mount();
-  fun_animations_offset_large.pauseAll();
+  fun_animations_offset_large.mount()?.pauseAll();
 
   const fun_animations_offset_custom = new FunText(
     fun_animations_offset_custom_container,
     fun_animations_offset_custom_animations
   );
-  fun_animations_offset_custom.mount();
-  fun_animations_offset_custom.pauseAll();
+  fun_animations_offset_custom.mount()?.pauseAll();
 
-  const play_button = document.getElementById("fun_animations_offset_button");
+  const play_button = document.getElementById("fun_animations_offset_play");
   if (play_button) {
     play_button.addEventListener("click", () => {
-      fun_animations_offset_none.resetAll();
-      fun_animations_offset_small.resetAll();
-      fun_animations_offset_large.resetAll();
-      fun_animations_offset_custom.resetAll();
-
       fun_animations_offset_none.playAll();
       fun_animations_offset_small.playAll();
       fun_animations_offset_large.playAll();
       fun_animations_offset_custom.playAll();
+    });
+  }
+
+  const pause_button = document.getElementById("fun_animations_offset_pause");
+  if (pause_button) {
+    pause_button.addEventListener("click", () => {
+      fun_animations_offset_none.pauseAll();
+      fun_animations_offset_small.pauseAll();
+      fun_animations_offset_large.pauseAll();
+      fun_animations_offset_custom.pauseAll();
+    });
+  }
+
+  const reset_button = document.getElementById("fun_animations_offset_reset");
+  if (reset_button) {
+    reset_button.addEventListener("click", () => {
+      fun_animations_offset_none.resetAll();
+      fun_animations_offset_small.resetAll();
+      fun_animations_offset_large.resetAll();
+      fun_animations_offset_custom.resetAll();
     });
   }
 }
