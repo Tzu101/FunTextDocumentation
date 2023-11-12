@@ -233,11 +233,20 @@ const animations: InputAnimation[] = [
   },
 ];
 
+// Defines options
+const options: InputOptions = {
+  defaults: {
+    iteration: "infinite",
+    direction: "alternate"
+  }
+}
+
 if (container) {
   // Builds the funtext instance
   const funtext = new FunText(
     container,
-    animations
+    animations,
+    options
   );
 
   // Replaces the content of the container with the funtext instance
@@ -466,15 +475,18 @@ const object_animations = [
             custom properties like
             <span class="text text--highlight">offset</span> and
             <span class="text text--highlight">sync</span>.
+          </p>
 
-            <div class="seperator seperator--thin"></div>
+          <div class="seperator seperator--thin"></div>
 
-            <section class="container container--property">
-              <h4 class="title title--property">Offset</h4>
-              <p class="text">Offset defines the delay between animations in the same scope.</p>
+          <section class="container container--property">
+            <h4 class="title title--property">Offset</h4>
+            <p class="text">
+              Offset defines the delay between animations in the same scope.
+            </p>
 
-              <p class="text">Example:</p>
-              <pre><code class="language-typescript">const offset_none = [
+            <p class="text">Example:</p>
+            <pre><code class="language-typescript">const offset_none = [
   {
     scope: "letter",
     property: "opacity",
@@ -520,30 +532,39 @@ const offset_custom = [
   },
 ];
 </code></pre>
-            
+
             <p class="text">Result:</p>
             <div id="fun_animations_offset_none">This has no offset</div>
             <div id="fun_animations_offset_small">This has a small offset</div>
             <div id="fun_animations_offset_large">This has a large offset</div>
-            <div id="fun_animations_offset_custom">This has a custom offset</div>
+            <div id="fun_animations_offset_custom">
+              This has a custom offset
+            </div>
 
             <div class="panel">
-              <button class="button" id="fun_animations_offset_play">Play</button>
-              <button class="button" id="fun_animations_offset_pause">Pause</button>
-              <button class="button" id="fun_animations_offset_reset">Reset</button>
+              <button class="button" id="fun_animations_offset_play">
+                Play
+              </button>
+              <button class="button" id="fun_animations_offset_pause">
+                Pause
+              </button>
+              <button class="button" id="fun_animations_offset_reset">
+                Reset
+              </button>
             </div>
-            </section>
-
-          </p>
+          </section>
         </section>
 
         <div class="seperator seperator--thin"></div>
 
         <section class="container container--property">
           <h4 class="title title--property">Sync</h4>
-          <p class="text">Sync moves the animation to fit a specefied time frame. It has to parameters: 
-            <span class="text text--highlight">duration</span>, which specefies a new duration where the animation will be placed, and
-            <span class="text text--highlight">location</span>, which specefies where in that new location the animation will be placed.
+          <p class="text">
+            Sync moves the animation to fit a specefied time frame. It has to
+            parameters: <span class="text text--highlight">duration</span>,
+            which specefies a new duration where the animation will be placed,
+            and <span class="text text--highlight">location</span>, which
+            specefies where in that new location the animation will be placed.
           </p>
 
           <p class="text">Example:</p>
@@ -598,9 +619,15 @@ const sync_end = [
 
           <p class="text">Result:</p>
           <div id="fun_animations_sync_none">This animation has no sync</div>
-          <div id="fun_animations_sync_start">This animation is synced to the start</div>
-          <div id="fun_animations_sync_middle">This animation is synced to the middle</div>
-          <div id="fun_animations_sync_end">This animation is synced to the end</div>
+          <div id="fun_animations_sync_start">
+            This animation is synced to the start
+          </div>
+          <div id="fun_animations_sync_middle">
+            This animation is synced to the middle
+          </div>
+          <div id="fun_animations_sync_end">
+            This animation is synced to the end
+          </div>
 
           <div class="panel">
             <button class="button" id="fun_animations_sync_play">Play</button>
@@ -613,6 +640,76 @@ const sync_end = [
 
         <section class="container container--property">
           <h4 class="title title--property">Transform and filter</h4>
+          <p class="text">
+            There are two animated properties that control multiple other
+            properties. These are In the realm of CSS animations,
+            <span class="text text--highlight">transform</span> and
+            <span class="text text--highlight">filter</span> are pivotal
+            properties, each capable of orchestrating a variety of
+            sub-properties. Managing these intricate configurations manually can
+            be challenging, prompting the implementation of custom animations
+            tailored specifically for these compound properties."
+          </p>
+
+          <p class="text">Example:</p>
+          <pre><code class="language-typescript">const transform = [
+  {
+    scope: "letter",
+    type: "transform",
+    animations: [
+      {
+        property: "translateY",
+        duration: 5,
+        unit: "px",
+        steps: "-5",
+      },
+      {
+        property: "rotate",
+        duration: 5,
+        unit: "deg",
+        steps: { 50: "180" },
+      },
+    ],
+    fill: "forwards",
+  },
+];
+
+const filter = [
+  {
+    scope: "letter",
+    type: "filter",
+    animations: [
+      {
+        property: "opacity",
+        duration: 5,
+        unit: "",
+        steps: [1, 0],
+      },
+      {
+        property: "blur",
+        duration: 4,
+        unit: "px",
+        steps: 2,
+      },
+    ],
+    fill: "forwards",
+  },
+];
+</code></pre>
+
+          <p class="text">Result:</p>
+          <div id="fun_animations_custom_transform">Transform animations</div>
+          <div id="fun_animations_custom_filter">Filter animations</div>
+
+          <div class="panel">
+            <button class="button" id="fun_animations_custom_play">Play</button>
+            <button class="button" id="fun_animations_custom_pause">
+              Pause
+            </button>
+            <button class="button" id="fun_animations_custom_reset">
+              Reset
+            </button>
+          </div>
         </section>
 
         <div class="seperator"></div>

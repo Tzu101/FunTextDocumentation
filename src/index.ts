@@ -97,10 +97,12 @@ FunText.options = {
     prefersColorScheme: true,
   },
   css: {
-    text: "color: rgb(19, 19, 25); background: rgb(228, 228, 240);",
+    root: "background: rgb(228, 228, 240);",
+    container: "color: rgb(19, 19, 25);",
   },
   altcss: {
-    text: "color: rgb(228, 228, 240); background: rgb(19, 19, 25);",
+    root: "background: rgb(19, 19, 25);",
+    container: "color: rgb(228, 228, 240);",
   },
 };
 
@@ -147,8 +149,18 @@ const fun_setup_animations: InputAnimation[] = [
     iteration: "infinite",
   },
 ];
+const fun_setup_options: InputOptions = {
+  defaults: {
+    iteration: "infinite",
+    direction: "alternate",
+  },
+};
 if (fun_setup_container) {
-  const fun_setup = new FunText(fun_setup_container, fun_setup_animations);
+  const fun_setup = new FunText(
+    fun_setup_container,
+    fun_setup_animations,
+    fun_setup_options
+  );
   fun_setup.mount()?.pauseAll();
 
   const play_button = document.getElementById("fun_setup_play");
@@ -638,6 +650,98 @@ if (
       fun_animations_sync_start.resetAll();
       fun_animations_sync_middle.resetAll();
       fun_animations_sync_end.resetAll();
+    });
+  }
+}
+
+// Transform and filter example
+const fun_animations_custom_transform_container = document.getElementById(
+  "fun_animations_custom_transform"
+);
+const fun_animations_custom_transform_animations: InputAnimation[] = [
+  {
+    scope: "letter",
+    type: "transform",
+    animations: [
+      {
+        property: "translateY",
+        duration: 5,
+        unit: "px",
+        steps: "-5",
+      },
+      {
+        property: "rotate",
+        duration: 5,
+        unit: "deg",
+        steps: { 50: "180" },
+      },
+    ],
+    fill: "forwards",
+  },
+];
+
+const fun_animations_custom_filter_container = document.getElementById(
+  "fun_animations_custom_filter"
+);
+const fun_animations_custom_filter_animations: InputAnimation[] = [
+  {
+    scope: "letter",
+    type: "filter",
+    animations: [
+      {
+        property: "opacity",
+        duration: 5,
+        unit: "",
+        steps: [1, 0],
+      },
+      {
+        property: "blur",
+        duration: 4,
+        unit: "px",
+        steps: 2,
+      },
+    ],
+    fill: "forwards",
+  },
+];
+
+if (
+  fun_animations_custom_transform_container &&
+  fun_animations_custom_filter_container
+) {
+  const fun_animations_custom_transform = new FunText(
+    fun_animations_custom_transform_container,
+    fun_animations_custom_transform_animations
+  );
+  fun_animations_custom_transform.mount()?.pauseAll();
+
+  const fun_animations_custom_filter = new FunText(
+    fun_animations_custom_filter_container,
+    fun_animations_custom_filter_animations
+  );
+  fun_animations_custom_filter.mount()?.pauseAll();
+
+  const play_button = document.getElementById("fun_animations_custom_play");
+  if (play_button) {
+    play_button.addEventListener("click", () => {
+      fun_animations_custom_transform.playAll();
+      fun_animations_custom_filter.playAll();
+    });
+  }
+
+  const pause_button = document.getElementById("fun_animations_custom_pause");
+  if (pause_button) {
+    pause_button.addEventListener("click", () => {
+      fun_animations_custom_transform.pauseAll();
+      fun_animations_custom_filter.pauseAll();
+    });
+  }
+
+  const reset_button = document.getElementById("fun_animations_custom_reset");
+  if (reset_button) {
+    reset_button.addEventListener("click", () => {
+      fun_animations_custom_transform.resetAll();
+      fun_animations_custom_filter.resetAll();
     });
   }
 }

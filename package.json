@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/Tzu101/FunTextDocumentation#readme",
   "dependencies": {
-    "funtext": "^1.7.1"
+    "funtext": "^1.7.3"
   },
   "devDependencies": {
     "@types/node": "^20.8.9",
