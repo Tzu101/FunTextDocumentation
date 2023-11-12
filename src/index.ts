@@ -19,6 +19,13 @@ let isMobile = window.innerWidth <= maxMobile;
 let isOpen = false;
 
 function updateMenu() {
+  // Scroll control
+  if (isMobile && isOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
   if (close) {
     if (isMobile && isOpen) {
       close.style.setProperty("display", "block");
@@ -97,12 +104,29 @@ FunText.options = {
     prefersColorScheme: true,
   },
   css: {
-    root: "background: rgb(228, 228, 240);",
-    container: "color: rgb(19, 19, 25);",
+    root: "height: fit-content;",
+    container: "color: rgb(19, 19, 25); background: rgb(228, 228, 240);",
+    raw: `
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      @media (max-width: 768px) {
+        .funtext__text {
+          font-size: 1.5rem;
+        }
+      }
+
+      @media (max-width: 300px) {
+        .funtext__text {
+          font-size: 1.1rem;
+        }
+      }
+    `,
   },
   altcss: {
-    root: "background: rgb(19, 19, 25);",
-    container: "color: rgb(228, 228, 240);",
+    container: "color: rgb(228, 228, 240); background: rgb(19, 19, 25);",
   },
 };
 

@@ -108,10 +108,21 @@ span {
   justify-content: space-between;
   align-items: center;
 
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (min-width: $max-mobile) {
+      font-size: 1.25rem;
+    }
+  }
+
   &__side {
-    width: 4rem;
+    width: 18px;
 
     &--version {
+      direction: rtl;
       color: var(--highlight-color);
     }
   }
@@ -130,6 +141,7 @@ span {
   z-index: 2;
   background-color: var(--background--color);
   transition: left 0.5s ease-out;
+  overflow: auto;
 
   @media (max-width: $max-mobile) {
     left: calc(var(--sidebar-width) * -1 + var(--sidebar-slide));
@@ -277,6 +289,7 @@ span {
   display: flex;
   gap: 1rem;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .button {

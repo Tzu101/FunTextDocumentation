@@ -94,10 +94,21 @@ span {
   justify-content: space-between;
   align-items: center;
 }
+.header__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .header__title {
+    font-size: 1.25rem;
+  }
+}
 .header__side {
-  width: 4rem;
+  width: 18px;
 }
 .header__side--version {
+  direction: rtl;
   color: var(--highlight-color);
 }
 
@@ -112,6 +123,7 @@ span {
   z-index: 2;
   background-color: var(--background--color);
   transition: left 0.5s ease-out;
+  overflow: auto;
 }
 @media (max-width: 768px) {
   .sidebar {
@@ -241,6 +253,7 @@ span {
   display: flex;
   gap: 1rem;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .button {
