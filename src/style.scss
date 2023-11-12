@@ -224,6 +224,7 @@ span {
 .title {
   position: relative;
   font-weight: bold;
+  width: fit-content;
 
   &::before {
     display: none;

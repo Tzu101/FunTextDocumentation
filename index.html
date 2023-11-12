@@ -412,7 +412,7 @@ const array_animations = [
     scope: "letter",
     property: "color",
     duration: 10,
-    steps: ["", "blue", "green", "yellow", "red"], // Invalid/Empty strings are replaces with default values
+    steps: ["blue", "green", "yellow", "red"],
     fill: "forwards",
   },
 ];
@@ -535,6 +535,84 @@ const offset_custom = [
             </section>
 
           </p>
+        </section>
+
+        <div class="seperator seperator--thin"></div>
+
+        <section class="container container--property">
+          <h4 class="title title--property">Sync</h4>
+          <p class="text">Sync moves the animation to fit a specefied time frame. It has to parameters: 
+            <span class="text text--highlight">duration</span>, which specefies a new duration where the animation will be placed, and
+            <span class="text text--highlight">location</span>, which specefies where in that new location the animation will be placed.
+          </p>
+
+          <p class="text">Example:</p>
+          <pre><code class="language-typescript">const sync_none = [
+  {
+    scope: "letter",
+    property: "background",
+    duration: 6,
+    steps: "red",
+  },
+];
+
+const sync_start = [
+  {
+    scope: "letter",
+    property: "background",
+    duration: 3,
+    steps: "red",
+    sync: {
+      duration: 6,
+      location: 0,
+    },
+  },
+];
+
+const sync_middle = [
+  {
+    scope: "letter",
+    property: "background",
+    duration: 3,
+    steps: "red",
+    sync: {
+      duration: 6,
+      location: 50,
+    },
+  },
+];
+
+const sync_end = [
+  {
+    scope: "letter",
+    property: "background",
+    duration: 3,
+    steps: "red",
+    sync: {
+      duration: 6,
+      location: 100,
+    },
+  },
+];
+</code></pre>
+
+          <p class="text">Result:</p>
+          <div id="fun_animations_sync_none">This animation has no sync</div>
+          <div id="fun_animations_sync_start">This animation is synced to the start</div>
+          <div id="fun_animations_sync_middle">This animation is synced to the middle</div>
+          <div id="fun_animations_sync_end">This animation is synced to the end</div>
+
+          <div class="panel">
+            <button class="button" id="fun_animations_sync_play">Play</button>
+            <button class="button" id="fun_animations_sync_pause">Pause</button>
+            <button class="button" id="fun_animations_sync_reset">Reset</button>
+          </div>
+        </section>
+
+        <div class="seperator seperator--thin"></div>
+
+        <section class="container container--property">
+          <h4 class="title title--property">Transform and filter</h4>
         </section>
 
         <div class="seperator"></div>

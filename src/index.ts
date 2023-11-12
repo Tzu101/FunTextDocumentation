@@ -97,10 +97,10 @@ FunText.options = {
     prefersColorScheme: true,
   },
   css: {
-    text: "color: rgb(19, 19, 25);",
+    text: "color: rgb(19, 19, 25); background: rgb(228, 228, 240);",
   },
   altcss: {
-    text: "color: rgb(228, 228, 240);",
+    text: "color: rgb(228, 228, 240); background: rgb(19, 19, 25);",
   },
 };
 
@@ -319,7 +319,7 @@ const fun_steps_array_animations: InputAnimation[] = [
     scope: "letter",
     property: "color",
     duration: 10,
-    steps: ["", "blue", "green", "yellow", "red"],
+    steps: ["blue", "green", "yellow", "red"],
     fill: "forwards",
   },
 ];
@@ -506,6 +506,138 @@ if (
       fun_animations_offset_small.resetAll();
       fun_animations_offset_large.resetAll();
       fun_animations_offset_custom.resetAll();
+    });
+  }
+}
+
+// Sync example
+const fun_animations_sync_none_container = document.getElementById(
+  "fun_animations_sync_none"
+);
+const fun_animations_sync_none_animations: InputAnimation[] = [
+  {
+    scope: "letter",
+    property: "background",
+    duration: 6,
+    steps: "red",
+  },
+];
+
+const fun_animations_sync_start_container = document.getElementById(
+  "fun_animations_sync_start"
+);
+const fun_animations_sync_start_animations: InputAnimation[] = [
+  {
+    scope: "letter",
+    property: "background",
+    duration: 3,
+    steps: "red",
+    sync: {
+      duration: 6,
+      location: "start",
+    },
+  },
+];
+
+const fun_animations_sync_middle_container = document.getElementById(
+  "fun_animations_sync_middle"
+);
+const fun_animations_sync_middle_animations: InputAnimation[] = [
+  {
+    scope: "letter",
+    property: "background",
+    duration: 3,
+    steps: "red",
+    sync: {
+      duration: 6,
+      location: "middle",
+    },
+  },
+];
+{
+}
+
+const fun_animations_sync_end_container = document.getElementById(
+  "fun_animations_sync_end"
+);
+const fun_animations_sync_end_animations: InputAnimation[] = [
+  {
+    scope: "letter",
+    property: "background",
+    duration: 3,
+    steps: "red",
+    sync: {
+      duration: 6,
+      location: "end",
+    },
+  },
+];
+
+if (
+  fun_animations_sync_none_container &&
+  fun_animations_sync_start_container &&
+  fun_animations_sync_middle_container &&
+  fun_animations_sync_end_container
+) {
+  const none_length = fun_animations_sync_none_container.innerText.length;
+  const fun_animations_sync_none = new FunText(
+    fun_animations_sync_none_container,
+    fun_animations_sync_none_animations,
+    { defaults: { offset: 0.1 } }
+  );
+  fun_animations_sync_none.mount()?.pauseAll();
+
+  const start_length = fun_animations_sync_start_container.innerText.length;
+  const fun_animations_sync_start = new FunText(
+    fun_animations_sync_start_container,
+    fun_animations_sync_start_animations,
+    { defaults: { offset: (0.1 * none_length) / start_length } }
+  );
+  fun_animations_sync_start.mount()?.pauseAll();
+
+  const middle_length = fun_animations_sync_middle_container.innerText.length;
+  const fun_animations_sync_middle = new FunText(
+    fun_animations_sync_middle_container,
+    fun_animations_sync_middle_animations,
+    { defaults: { offset: (0.1 * none_length) / middle_length } }
+  );
+  fun_animations_sync_middle.mount()?.pauseAll();
+
+  const end_length = fun_animations_sync_end_container.innerText.length;
+  const fun_animations_sync_end = new FunText(
+    fun_animations_sync_end_container,
+    fun_animations_sync_end_animations,
+    { defaults: { offset: (0.1 * none_length) / end_length } }
+  );
+  fun_animations_sync_end.mount()?.pauseAll();
+
+  const play_button = document.getElementById("fun_animations_sync_play");
+  if (play_button) {
+    play_button.addEventListener("click", () => {
+      fun_animations_sync_none.playAll();
+      fun_animations_sync_start.playAll();
+      fun_animations_sync_middle.playAll();
+      fun_animations_sync_end.playAll();
+    });
+  }
+
+  const pause_button = document.getElementById("fun_animations_sync_pause");
+  if (pause_button) {
+    pause_button.addEventListener("click", () => {
+      fun_animations_sync_none.pauseAll();
+      fun_animations_sync_start.pauseAll();
+      fun_animations_sync_middle.pauseAll();
+      fun_animations_sync_end.pauseAll();
+    });
+  }
+
+  const reset_button = document.getElementById("fun_animations_sync_reset");
+  if (reset_button) {
+    reset_button.addEventListener("click", () => {
+      fun_animations_sync_none.resetAll();
+      fun_animations_sync_start.resetAll();
+      fun_animations_sync_middle.resetAll();
+      fun_animations_sync_end.resetAll();
     });
   }
 }

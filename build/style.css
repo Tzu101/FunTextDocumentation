@@ -198,6 +198,7 @@ span {
 .title {
   position: relative;
   font-weight: bold;
+  width: fit-content;
 }
 .title::before {
   display: none;
