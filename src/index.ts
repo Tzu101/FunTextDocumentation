@@ -799,7 +799,7 @@ if (fun_options_defaults_container) {
     fun_options_defaults_animations,
     fun_options_defaults_options
   );
-  fun_options_defaults.mount();
+  fun_options_defaults.mount()?.pauseAll();
 
   const play_button = document.getElementById("fun_options_defaults_play");
   if (play_button) {
@@ -880,4 +880,147 @@ if (
     fun_options_css_layout_options
   );
   fun_options_css_layout.mount();
+}
+
+// Controls build example
+const fun_controls_build_container =
+  document.getElementById("fun_controls_build");
+const fun_controls_build_animations: InputAnimation[] = [
+  {
+    scope: "letter",
+    property: "translate",
+    steps: "0 4px",
+    duration: 0.5,
+    iteration: "infinite",
+    direction: "alternate",
+    offset: 0.2,
+  },
+];
+const fun_controls_build_options: InputOptions = {
+  text: "Loading...",
+};
+
+if (fun_controls_build_container) {
+  const fun_controls_build = new FunText(
+    fun_controls_build_container,
+    fun_controls_build_animations,
+    fun_controls_build_options
+  );
+
+  const mount_button = document.getElementById("fun_controls_build_mount");
+  if (mount_button) {
+    mount_button.addEventListener("click", () => {
+      fun_controls_build.mount();
+    });
+  }
+
+  const unmount_button = document.getElementById("fun_controls_build_unmount");
+  if (unmount_button) {
+    unmount_button.addEventListener("click", () => {
+      fun_controls_build.unmount();
+    });
+  }
+
+  const clicks = document.getElementById("fun_controls_build_clicks");
+  let click_num = 0;
+  const click_button = document.getElementById("fun_controls_build_click");
+  if (click_button) {
+    click_button.addEventListener("click", () => {
+      click_num += 1;
+      if (clicks) {
+        clicks.innerHTML = "Clicks: " + click_num;
+      }
+    });
+  }
+}
+
+// Controls setters example
+const fun_controls_set_start_container = document.getElementById(
+  "fun_controls_set_start"
+);
+const fun_controls_set_new_container = document.getElementById(
+  "fun_controls_set_new"
+);
+
+const fun_controls_set_start_animations: InputAnimation[] = [
+  {
+    scope: "letter",
+    property: "color",
+    steps: ["lime", "green", "lime"],
+    duration: 3,
+    iteration: "infinite",
+    sync: {
+      duration: 6,
+      location: 0,
+    },
+  },
+];
+const fun_controls_set_new_animations: InputAnimation[] = [
+  {
+    scope: "word",
+    property: "translate",
+    steps: "10px 0",
+    duration: 4,
+    iteration: "infinite",
+    direction: "alternate",
+  },
+];
+
+const fun_controls_set_start_options = {
+  css: {
+    text: "font-size: 1.5rem;",
+  },
+};
+const fun_controls_set_new_options = {
+  css: {
+    text: "font-size: 1.1rem;",
+  },
+};
+
+if (fun_controls_set_start_container && fun_controls_set_new_container) {
+  const fun_controls_set = new FunText(
+    fun_controls_set_start_container,
+    fun_controls_set_start_animations,
+    fun_controls_set_start_options
+  );
+  fun_controls_set.mount()?.pauseAll();
+
+  const container_button = document.getElementById(
+    "fun_controls_set_container"
+  );
+  if (container_button) {
+    container_button.addEventListener("click", () => {
+      fun_controls_set.container = fun_controls_set_new_container;
+    });
+  }
+
+  const animations_button = document.getElementById(
+    "fun_controls_set_animations"
+  );
+  if (animations_button) {
+    animations_button.addEventListener("click", () => {
+      fun_controls_set.animations = fun_controls_set_new_animations;
+    });
+  }
+
+  const options_button = document.getElementById("fun_controls_set_options");
+  if (options_button) {
+    options_button.addEventListener("click", () => {
+      fun_controls_set.options = fun_controls_set_new_options;
+    });
+  }
+
+  const play_button = document.getElementById("fun_controls_set_play");
+  if (play_button) {
+    play_button.addEventListener("click", () => {
+      fun_controls_set.playAll();
+    });
+  }
+
+  const pause_button = document.getElementById("fun_controls_set_pause");
+  if (pause_button) {
+    pause_button.addEventListener("click", () => {
+      fun_controls_set.pauseAll();
+    });
+  }
 }

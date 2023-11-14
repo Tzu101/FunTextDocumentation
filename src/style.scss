@@ -14,6 +14,7 @@ $max-mobile: 768px;
   --almost-black: rgb(19, 19, 25);
 
   --void: white;
+  --fill: black;
   --text-color: var(--almost-black);
   --border-color: var(--light-gray);
   --background--color: var(--almost-white);
@@ -22,6 +23,7 @@ $max-mobile: 768px;
 
   @media (prefers-color-scheme: dark) {
     --void: black;
+    --fill: white;
     --text-color: var(--almost-white);
     --border-color: var(--dark-gray);
     --background--color: var(--almost-black);
@@ -70,6 +72,7 @@ code {
 
 body {
   background: var(--background--color);
+  padding-bottom: 50rem;
 }
 
 h1,
@@ -260,6 +263,7 @@ span {
 
   &--highlight {
     font-weight: bold;
+    color: var(--fill);
   }
 
   &--link {

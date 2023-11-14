@@ -909,8 +909,8 @@ const user_css_layout = {
 
             <pre><code class="language-typescript">const options = {
   accessibility: {
-    aria: true,                  // Set to true by default
-    prefersContrast: 0.25,       // Set to 0.15 by default
+    aria: true,  // Set to true by default
+    prefersContrast: 0.25,  // Set to 0.15 by default
     prefersReducedMotion: true,  // Set to false by default
   }
 }
@@ -969,13 +969,178 @@ FunText.options = {
           <div class="seperator seperator--thin"></div>
 
           <section class="container container--property">
-            <h4 class="title title--property">Mount and unmount</h4>
+            <h4 class="title title--property">Build</h4>
+            <p class="text">
+              The <span class="text text--highlight">mount</span> function
+              replaces container text with animates text and
+              <span class="text text--highlight">unmount</span> does the
+              opposite.
+            </p>
+
+            <p class="text">Example:</p>
+            <pre><code class="language-xml">&lt;div id="funtext"&gt;
+  &lt;p id="click_display"&gt;Clicks: 0&lt;/p&gt;
+  &lt;br&gt;
+  &lt;button id="click_button"&gt;Click&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+  &lt;button id="mount_button"&gt;Mount&lt;/button&gt;
+  &lt;button id="unmount_button"&gt;Unmount&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+
+            <pre><code class="language-typescript">const click_display = document.getElementById("click_display");
+let clicks = 0;
+const click_button = document.getElementById("click_button");
+click_button.addEventListener("click", () => {
+  clicks += 1;
+  click_display.innerHTML = "Clicks: " + clicks;
+});
+            
+const funtext_conatiner = document.getElementById("funtext");
+const funtext_animations] = [
+  {
+    scope: "letter",
+    property: "translate",
+    steps: "0 4px",
+    duration: 0.5,
+    iteration: "infinite",
+    direction: "alternate",
+    offset: 0.2
+  },
+];
+const funtext_options = {
+  text: "Loading...",
+};
+const funtext = new FunText(
+  fun_controls_build_container,
+  fun_controls_build_animations,
+  fun_controls_build_options
+);
+  
+
+const mount_button = document.getElementById("mount_button");
+mount_button.addEventListener("click", () => funtext.mount());
+
+const unmount_button = document.getElementById("unmount_button");
+unmount_button.addEventListener("click", () => funtext.unmount());
+</code></pre>
+
+            <p class="text">Result:</p>
+            <div id="fun_controls_build">
+              <p class="text" id="fun_controls_build_clicks">Clicks: 0</p>
+              <br />
+              <button class="button" id="fun_controls_build_click">
+                Click
+              </button>
+            </div>
+
+            <div class="panel">
+              <button class="button" id="fun_controls_build_mount">
+                Mount
+              </button>
+              <button class="button" id="fun_controls_build_unmount">
+                Unmount
+              </button>
+            </div>
           </section>
 
           <div class="seperator seperator--thin"></div>
 
           <section class="container container--property">
             <h4 class="title title--property">Setters</h4>
+            <p class="text">
+              Parameters of the funtext object can be altered after
+              construction. The
+              <span class="text text--highlight">container</span>,
+              <span class="text text--highlight">animations</span> and
+              <span class="text text--highlight">options</span> can all be
+              manually chnaged.
+            </p>
+
+            <p class="text">Example:</p>
+            <pre><code class="language-typescript">const container_start = document.getElementById("container_start");
+const container_new = document.getElementById("container_new");
+
+const animations_start = [
+  {
+    scope: "letter",
+    property: "color",
+    steps: ["lime", "green", "lime"],
+    duration: 3,
+    iteration: "infinite",
+    sync: {
+      duration: 6,
+      location: 0,
+    },
+  },
+];
+const animations_new = [
+  {
+    scope: "word",
+    property: "translate",
+    steps: "10px 0",
+    duration: 4,
+    iteration: "infinite",
+    direction: "alternate",
+  },
+];
+
+const options_start = {
+  css: {
+    text: "font-size: 1.5rem;",
+  },
+};
+const options_new = {
+  css: {
+    text: "font-size: 1.1rem;",
+  },
+};
+
+const funtext = new FunText(
+  container_start,
+  animations_start,
+  options_start
+);
+funtext.mount();
+
+const container_button = document.getElementById("set_container");
+container_button.addEventListener("click", () => {
+  funtext.container = container_new;
+});
+
+const animations_button = document.getElementById("set_animations");
+animations_button.addEventListener("click", () => {
+  funtext.animations = animations_new;
+});
+
+const options_button = document.getElementById("set_options");
+options_button.addEventListener("click", () => {
+  funtext.options = options_new;
+});
+</code></pre>
+
+            <p class="text">Result:</p>
+            <div id="fun_controls_set_start">Starting container</div>
+            <div id="fun_controls_set_new">New container</div>
+
+            <div class="panel">
+              <button class="button" id="fun_controls_set_container">
+                Set container
+              </button>
+              <button class="button" id="fun_controls_set_animations">
+                Set animations
+              </button>
+              <button class="button" id="fun_controls_set_options">
+                Set options
+              </button>
+            </div>
+
+            <div class="panel">
+              <button class="button" id="fun_controls_set_play">Play</button>
+              <button class="button" id="fun_controls_set_pause">Pause</button>
+            </div>
           </section>
 
           <div class="seperator seperator--thin"></div>
@@ -985,20 +1150,6 @@ FunText.options = {
           </section>
         </section>
       </section>
-
-      <pre>
-          <code class="language-typescript">
-function sayHello() {
-    alert('Hello, world!');
-}
-
-type a = number
-const b: a = 5
-    
-// Call the function
-sayHello();
-          </code>
-        </pre>
     </section>
   </body>
 </html>
