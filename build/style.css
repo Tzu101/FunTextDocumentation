@@ -58,9 +58,13 @@ code {
   color: var(--unhighlight-color);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background--color);
-  padding-bottom: 50rem;
+  padding-bottom: 8rem;
 }
 
 h1,

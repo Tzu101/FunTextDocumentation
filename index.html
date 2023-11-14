@@ -30,7 +30,7 @@
     <!-- Style import -->
     <link rel="stylesheet" type="text/css" href="build/style.css" />
   </head>
-  <body data-theme="light">
+  <body>
     <header class="header">
       <div class="header__side">
         <i
@@ -1127,13 +1127,13 @@ options_button.addEventListener("click", () => {
 
             <div class="panel">
               <button class="button" id="fun_controls_set_container">
-                Set container
+                Set Container
               </button>
               <button class="button" id="fun_controls_set_animations">
-                Set animations
+                Set Animations
               </button>
               <button class="button" id="fun_controls_set_options">
-                Set options
+                Set Options
               </button>
             </div>
 
@@ -1147,6 +1147,125 @@ options_button.addEventListener("click", () => {
 
           <section class="container container--property">
             <h4 class="title title--property">Playstate</h4>
+            <p class="text">
+              The state of an individual animation can be changes manually. It
+              can be paused, played or toggled. This can be applied to an
+              indiviudal animation or all of them.
+            </p>
+
+            <p class="text">Example:</p>
+            <pre><code class="language-typescript">const container = document.getElementById("funtext");
+const animations: InputAnimation[] = [
+  {
+    scope: "letter",
+    property: "background",
+    steps: ["yellow", "orange", "red", "lime", "green", "blue", "purple"],
+    duration: 7,
+    iteration: "infinite",
+    direction: "alternate",
+  },
+  {
+    scope: "letter",
+    property: "color",
+    steps: ["purple", "blue", "green", "lime", "red", "orange", "yellow"],
+    duration: 7,
+    iteration: "infinite",
+    direction: "alternate",
+  },
+];
+
+const funtext = new FunText(
+  container,
+  animations
+);
+funtext.mount()?.pauseAll();
+
+const first_id: AnimationId = {
+  property: "background",
+  scope: "letter",
+};
+
+const status_any = document.getElementById("status_any");
+const status_all = document.getElementById("status_all");
+function updateStatus() {
+  status_any.innerText = "Playing any: " + funtext.isPlayingAny();
+  status_all.innerText = "Playing all: " + funtext.isPlayingAll();
+}
+
+const play_first = document.getElementById("play_first");
+play_first.addEventListener("click", () => {
+  funtext.play(first_id);
+  updateStatus();
+});
+
+const pause_first = document.getElementById("pause_first");
+pause_first.addEventListener("click", () => {
+  funtext.pause(first_id);
+  updateStatus();
+});
+
+const toggle_first = document.getElementById("toggle_first");
+toggle_first.addEventListener("click", () => {
+  funtext.toggle(first_id);
+  updateStatus();
+});
+
+const play_all = document.getElementById("play_all");
+play_all.addEventListener("click", () => {
+  funtext.playAll();
+  updateStatus();
+});
+
+const pause_all = document.getElementById("pause_all");
+pause_all.addEventListener("click", () => {
+  funtext.pauseAll();
+  updateStatus();
+});
+
+const toggle_all = document.getElementById("toggle_all");
+toggle_all.addEventListener("click", () => {
+  funtext.toggleAll();
+  updateStatus();
+});
+</code></pre>
+
+            <p class="text">Result:</p>
+            <div>
+              <p class="text text--highlight">Status</p>
+              <p class="text" id="fun_controls_state_status_any">
+                Playing any: false
+              </p>
+              <p class="text" id="fun_controls_state_status_all">
+                Playing all: false
+              </p>
+            </div>
+            <div id="fun_controls_state">
+              Control the playstate with the panel below
+            </div>
+
+            <div class="panel">
+              <button class="button" id="fun_controls_state_play_first">
+                Play First
+              </button>
+              <button class="button" id="fun_controls_state_pause_first">
+                Pause First
+              </button>
+              <button class="button" id="fun_controls_state_toggle_first">
+                Toggle First
+              </button>
+            </div>
+
+            <div class="panel">
+              <button class="button" id="fun_controls_state_play_all">
+                Play All
+              </button>
+              <button class="button" id="fun_controls_state_pause_all">
+                Pause All
+              </button>
+              <button class="button" id="fun_controls_state_toggle_all">
+                Toggle All
+              </button>
+            </div>
           </section>
         </section>
       </section>

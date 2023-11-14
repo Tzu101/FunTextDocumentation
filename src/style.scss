@@ -1,4 +1,5 @@
 $max-mobile: 768px;
+$header-size: 50px;
 
 * {
   margin: 0;
@@ -70,9 +71,13 @@ code {
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background--color);
-  padding-bottom: 50rem;
+  padding-bottom: 8rem;
 }
 
 h1,
@@ -103,7 +108,7 @@ span {
   z-index: 1;
 
   padding: 1rem 1.5rem;
-  height: 50px;
+  height: $header-size;
   background-color: var(--background--color);
   border-bottom: var(--border-style);
 
@@ -123,7 +128,7 @@ span {
 
 .sidebar {
   position: fixed;
-  top: 50px;
+  top: $header-size;
   left: 0;
   width: var(--sidebar-width);
 
@@ -154,9 +159,9 @@ span {
 
 .background {
   position: fixed;
-  top: 50px;
+  top: $header-size;
   width: 100%;
-  height: calc(100vh - 50px);
+  height: calc(100vh - $header-size);
   z-index: 1;
 
   background-color: black;

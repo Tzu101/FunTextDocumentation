@@ -5,9 +5,6 @@ import {
   type InputOptions,
 } from "funtext";
 
-// Funtext latest version
-const apiUrl = "https://registry.npmjs.org/funtext/latest";
-
 // Menu control
 const maxMobile = 768;
 const sliderWidth = "200px";
@@ -73,7 +70,55 @@ function closeMenu() {
 }
 (window as any).closeMenu = closeMenu;
 
+// Scrool behaviour
+const scroolOffset = 85;
+
+function scrollToElement(elementId: string) {
+  const element = document.getElementById(elementId);
+  if (element) {
+    const elementPosition =
+      element.getBoundingClientRect().top + window.scrollY;
+    const newPosition = elementPosition - scroolOffset;
+
+    window.scrollTo({
+      top: newPosition,
+      behavior: "smooth",
+    });
+
+    // Change the URL by modifying the fragment identifier
+    window.history.pushState(null, "", "#" + elementId);
+  }
+}
+
+if (sidebar) {
+  const links = sidebar.getElementsByTagName("a");
+  for (const link of links) {
+    const href = link.getAttribute("href");
+    if (!href || href[0] !== "#") {
+      continue;
+    }
+
+    const linkId = href.slice(1);
+    if (!linkId) {
+      continue;
+    }
+
+    link.addEventListener("click", (event: MouseEvent) => {
+      event.preventDefault();
+      scrollToElement(linkId);
+
+      if (isOpen) {
+        isOpen = false;
+        updateMenu();
+      }
+    });
+  }
+}
+
 // Use the fetch function to make a GET request to the URL
+// Funtext latest version
+const apiUrl = "https://registry.npmjs.org/funtext/latest";
+
 fetch(apiUrl)
   .then((response) => {
     // Check if the request was successful (status code 200)
@@ -1021,6 +1066,112 @@ if (fun_controls_set_start_container && fun_controls_set_new_container) {
   if (pause_button) {
     pause_button.addEventListener("click", () => {
       fun_controls_set.pauseAll();
+    });
+  }
+}
+
+// Controls paystate example
+const fun_controls_state_container =
+  document.getElementById("fun_controls_state");
+const fun_controls_state_animations: InputAnimation[] = [
+  {
+    scope: "letter",
+    property: "background",
+    steps: ["yellow", "orange", "red", "lime", "green", "blue", "purple"],
+    duration: 7,
+    iteration: "infinite",
+    direction: "alternate",
+  },
+  {
+    scope: "letter",
+    property: "color",
+    steps: ["purple", "blue", "green", "lime", "red", "orange", "yellow"],
+    duration: 7,
+    iteration: "infinite",
+    direction: "alternate",
+  },
+];
+
+if (fun_controls_state_container) {
+  const fun_controls_state = new FunText(
+    fun_controls_state_container,
+    fun_controls_state_animations
+  );
+  fun_controls_state.mount()?.pauseAll();
+
+  const first_id: AnimationId = {
+    property: "background",
+    scope: "letter",
+  };
+
+  const status_any = document.getElementById("fun_controls_state_status_any");
+  const status_all = document.getElementById("fun_controls_state_status_all");
+  function updateStatus() {
+    if (status_any && status_all) {
+      status_any.innerText =
+        "Playing any: " + fun_controls_state.isPlayingAny();
+      status_all.innerText =
+        "Playing all: " + fun_controls_state.isPlayingAll();
+    }
+  }
+
+  const play_first_button = document.getElementById(
+    "fun_controls_state_play_first"
+  );
+  if (play_first_button) {
+    play_first_button.addEventListener("click", () => {
+      fun_controls_state.play(first_id);
+      updateStatus();
+    });
+  }
+
+  const pause_first_button = document.getElementById(
+    "fun_controls_state_pause_first"
+  );
+  if (pause_first_button) {
+    pause_first_button.addEventListener("click", () => {
+      fun_controls_state.pause(first_id);
+      updateStatus();
+    });
+  }
+
+  const toggle_first_button = document.getElementById(
+    "fun_controls_state_toggle_first"
+  );
+  if (toggle_first_button) {
+    toggle_first_button.addEventListener("click", () => {
+      fun_controls_state.toggle(first_id);
+      updateStatus();
+    });
+  }
+
+  const play_all_button = document.getElementById(
+    "fun_controls_state_play_all"
+  );
+  if (play_all_button) {
+    play_all_button.addEventListener("click", () => {
+      fun_controls_state.playAll();
+      updateStatus();
+    });
+  }
+
+  const pause_all_button = document.getElementById(
+    "fun_controls_state_pause_all"
+  );
+  if (pause_all_button) {
+    pause_all_button.addEventListener("click", () => {
+      fun_controls_state.pauseAll();
+      updateStatus();
+    });
+  }
+
+  const toggle_all_button = document.getElementById(
+    "fun_controls_state_toggle_all"
+  );
+  if (toggle_all_button) {
+    toggle_all_button.addEventListener("click", () => {
+      fun_controls_state.toggleAll();
+      updateStatus();
     });
   }
 }
