@@ -94,16 +94,6 @@ span {
   justify-content: space-between;
   align-items: center;
 }
-.header__title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-@media (min-width: 768px) {
-  .header__title {
-    font-size: 1.25rem;
-  }
-}
 .header__side {
   width: 18px;
 }
@@ -118,6 +108,7 @@ span {
   left: 0;
   width: var(--sidebar-width);
   padding: 1rem 1.25rem;
+  padding-bottom: 8rem;
   height: 100vh;
   border-right: var(--border-style);
   z-index: 2;
@@ -229,14 +220,14 @@ span {
   font-size: 1.25rem;
 }
 .title--property {
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .text {
   font-size: 1rem;
 }
 .text--highlight {
-  text-decoration: underline;
+  font-weight: bold;
 }
 .text--link {
   text-decoration: none;

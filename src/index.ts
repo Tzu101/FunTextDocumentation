@@ -100,33 +100,11 @@ fetch(apiUrl)
 
 // Dark mode support
 FunText.options = {
-  accessibility: {
-    prefersColorScheme: true,
-  },
   css: {
-    root: "height: fit-content;",
     container: "color: rgb(19, 19, 25); background: rgb(228, 228, 240);",
-    raw: `
-      * {
-        margin: 0;
-        padding: 0;
-      }
-
-      @media (max-width: 768px) {
-        .funtext__text {
-          font-size: 1.5rem;
-        }
-      }
-
-      @media (max-width: 300px) {
-        .funtext__text {
-          font-size: 1.1rem;
-        }
-      }
-    `,
-  },
-  altcss: {
-    container: "color: rgb(228, 228, 240); background: rgb(19, 19, 25);",
+    dark: {
+      container: "color: rgb(228, 228, 240); background: rgb(19, 19, 25);",
+    },
   },
 };
 
@@ -146,10 +124,23 @@ const funtext_title_animations: InputAnimation[] = [
     offset: 0.25,
   },
 ];
+const funtext_title_options: InputOptions = {
+  css: {
+    text: "font-size: 1.6rem; font-weight: bold;",
+    768: {
+      text: "font-size: 1.4rem;",
+    },
+    400: {
+      text: "font-size: 1.2rem;",
+    },
+  },
+};
+
 if (funtext_title_container) {
   const funtext_title = new FunText(
     funtext_title_container,
-    funtext_title_animations
+    funtext_title_animations,
+    funtext_title_options
   );
   funtext_title.mount();
 }
@@ -768,4 +759,125 @@ if (
       fun_animations_custom_filter.resetAll();
     });
   }
+}
+
+// Options text example
+const fun_options_text_container = document.getElementById("fun_options_text");
+const fun_options_text_options: InputOptions = {
+  text: "New text provided in options",
+};
+if (fun_options_text_container) {
+  const fun_options_text = new FunText(
+    fun_options_text_container,
+    [],
+    fun_options_text_options
+  );
+  fun_options_text.mount();
+}
+
+// Options defaults example
+const fun_options_defaults_container = document.getElementById(
+  "fun_options_defaults"
+);
+const fun_options_defaults_animations: InputAnimation[] = [
+  {
+    scope: "letter",
+    property: "color",
+    duration: 3,
+    steps: "rgb(81, 150, 173)",
+  },
+];
+const fun_options_defaults_options: InputOptions = {
+  defaults: {
+    iteration: "infinite",
+    direction: "alternate",
+  },
+};
+if (fun_options_defaults_container) {
+  const fun_options_defaults = new FunText(
+    fun_options_defaults_container,
+    fun_options_defaults_animations,
+    fun_options_defaults_options
+  );
+  fun_options_defaults.mount();
+
+  const play_button = document.getElementById("fun_options_defaults_play");
+  if (play_button) {
+    play_button.addEventListener("click", () => {
+      fun_options_defaults.playAll();
+    });
+  }
+
+  const pause_button = document.getElementById("fun_options_defaults_pause");
+  if (pause_button) {
+    pause_button.addEventListener("click", () => {
+      fun_options_defaults.pauseAll();
+    });
+  }
+
+  const reset_button = document.getElementById("fun_options_defaults_reset");
+  if (reset_button) {
+    reset_button.addEventListener("click", () => {
+      fun_options_defaults.resetAll();
+    });
+  }
+}
+
+// Options css example
+const fun_options_css_container = document.getElementById("fun_options_css");
+const fun_options_css_options: InputOptions = {
+  css: {
+    root: "font-size: 1.5rem;",
+  },
+};
+
+const fun_options_css_dark_container = document.getElementById(
+  "fun_options_css_dark"
+);
+const fun_options_css_dark_options: InputOptions = {
+  css: {
+    container: "color: blue;",
+    dark: {
+      container: "color: red;",
+    },
+  },
+};
+
+const fun_options_css_layout_container = document.getElementById(
+  "fun_options_css_layout"
+);
+const fun_options_css_layout_options: InputOptions = {
+  css: {
+    text: "text-decoration: dashed; text-decoration-line: underline",
+    768: {
+      text: "text-decoration: underline;",
+    },
+  },
+};
+
+if (
+  fun_options_css_container &&
+  fun_options_css_dark_container &&
+  fun_options_css_layout_container
+) {
+  const fun_options_css = new FunText(
+    fun_options_css_container,
+    [],
+    fun_options_css_options
+  );
+  fun_options_css.mount();
+
+  const fun_options_css_dark = new FunText(
+    fun_options_css_dark_container,
+    [],
+    fun_options_css_dark_options
+  );
+  fun_options_css_dark.mount();
+
+  const fun_options_css_layout = new FunText(
+    fun_options_css_layout_container,
+    [],
+    fun_options_css_layout_options
+  );
+  fun_options_css_layout.mount();
 }

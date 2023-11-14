@@ -108,16 +108,6 @@ span {
   justify-content: space-between;
   align-items: center;
 
-  &__title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    @media (min-width: $max-mobile) {
-      font-size: 1.25rem;
-    }
-  }
-
   &__side {
     width: 18px;
 
@@ -135,6 +125,7 @@ span {
   width: var(--sidebar-width);
 
   padding: 1rem 1.25rem;
+  padding-bottom: 8rem;
   height: 100vh;
   border-right: var(--border-style);
 
@@ -260,7 +251,7 @@ span {
   }
 
   &--property {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 }
 
@@ -268,7 +259,7 @@ span {
   font-size: 1rem;
 
   &--highlight {
-    text-decoration: underline;
+    font-weight: bold;
   }
 
   &--link {

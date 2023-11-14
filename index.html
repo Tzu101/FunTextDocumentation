@@ -39,7 +39,7 @@
           onclick="openMenu()"
         ></i>
       </div>
-      <h1 class="header__title" id="funtext">FunText</h1>
+      <div id="funtext">FunText</div>
       <p class="header__side header__side--version" id="funtext_version">
         Version
       </p>
@@ -716,6 +716,242 @@ const filter = [
 
         <section class="container container--page">
           <h3 class="title title--page" id="documentation__options">Options</h3>
+          <p class="text">
+            Options are an optional third parameter that provide additional
+            customization, accessibility support and help shorten
+            initialization.
+          </p>
+
+          <div class="seperator seperator--thin"></div>
+
+          <section class="container container--property">
+            <h4 class="title title--property">Text</h4>
+            <p class="text">
+              Uses given text for animation instead on the one in the container.
+            </p>
+
+            <p class="text">Example:</p>
+            <pre><code class="language-xml">&lt;div id="funtext"&gt;This text will be overwriten&lt;/div&gt;</code></pre>
+
+            <pre><code class="language-typescript">const container = document.getElementById("funtext");
+const options = {
+  text: "New text provided in options"
+}
+const funtext = new FunText(container, [], options);
+fun_options_text.mount();
+</code></pre>
+
+            <p class="text">Result:</p>
+            <div id="fun_options_text"></div>
+          </section>
+
+          <div class="seperator seperator--thin"></div>
+
+          <section class="container container--property">
+            <h4 class="title title--property">Defaults</h4>
+            <p class="text">Provides default values to animation properties.</p>
+
+            <p class="text">Example:</p>
+            <pre><code class="language-typescript">const animations = [
+    {
+      scope: "letter",
+      property: "color",
+      duration: 3,
+      steps: "rgb(81, 150, 173)",
+    },
+  ];
+  
+  const options = {
+    defaults: {
+      iteration: "infinite",
+      direction: "alternate",
+    },
+  };
+</code></pre>
+
+            <p class="text">Result:</p>
+            <div id="fun_options_defaults">
+              Using default iteration and direction
+            </div>
+
+            <div class="panel">
+              <button class="button" id="fun_options_defaults_play">
+                Play
+              </button>
+              <button class="button" id="fun_options_defaults_pause">
+                Pause
+              </button>
+              <button class="button" id="fun_options_defaults_reset">
+                Reset
+              </button>
+            </div>
+          </section>
+
+          <div class="seperator seperator--thin"></div>
+
+          <section class="container container--property">
+            <h4 class="title title--property">Tags</h4>
+            <p class="text">
+              Tags determine the html tags used for specific element in the
+              creating of the funtext dom structure. There are
+              <span class="text text--highlight">container</span> (div),
+              <span class="text text--highlight">text</span> (p) and
+              <span class="text text--highlight">break</span> (br).
+            </p>
+
+            <p class="text">Example:</p>
+            <pre><code class="language-typescript">const options = {
+  tags: {
+    text: "span",
+    container: "section"
+  }
+}
+</code></pre>
+          </section>
+
+          <div class="seperator seperator--thin"></div>
+
+          <section class="container container--property">
+            <h4 class="title title--property">Css</h4>
+            <p class="text">
+              Can be used for custom styling. Has the following parameters:
+              <span class="text text--highlight">global</span>, for all classes,
+              <span class="text text--highlight">root</span>, for the root
+              element, <span class="text text--highlight">container</span>, for
+              the container elements,
+              <span class="text text--highlight">text</span>, for the text
+              elements, <span class="text text--highlight">break</span>, for the
+              newline elements and
+              <span class="text text--highlight">raw</span>, for insering raw
+              css. For dark mode, there is
+              <span class="text text--highlight">dark</span>, which takes the
+              above elements and redefines them under the media rule
+              <span class="text text--highlight"
+                >prefers-color-scheme: dark</span
+              >. For layouts with specific breakpoints, any number can be
+              inserted and all above elements are redefined under the media rule
+              <span class="text text--highlight">max-width: "number"px</span>.
+            </p>
+
+            <p class="text">Example:</p>
+            <pre><code class="language-xml">&lt;div id="funtext1"&gt;This has a bigger font&lt;/div&gt;
+&lt;div id="funtext2"&gt;his is blue on light mode and red on dark mode&lt;/div&gt;
+&lt;div id="funtext3"&gt;This has a underline on mobile and a dash on desktop&lt;/div&gt;
+</code></pre>
+
+            <pre><code class="language-typescript">const user_css = {
+  css: {
+    root: "font-size: 1.5rem;",
+  },
+};
+
+const user_css_dark = {
+  css: {
+    container: "color: blue;",
+    dark: {
+      container: "color: red;",
+    },
+  },
+};
+
+const user_css_layout = {
+  css: {
+    text: "text-decoration: dashed;",
+    768: {
+      text: "text-decoration: underline;",
+    },
+  },
+};
+</code></pre>
+
+            <p class="text">Result:</p>
+            <div id="fun_options_css">This has a bigger font</div>
+            <div id="fun_options_css_dark">
+              This is blue on light mode and red on dark mode
+            </div>
+            <div id="fun_options_css_layout">
+              This has a underline on mobile and a dash on desktop
+            </div>
+          </section>
+
+          <div class="seperator seperator--thin"></div>
+
+          <section class="container container--property">
+            <h4 class="title title--property">Attributes</h4>
+            <p class="text">
+              Sets the attribute and value of the root element.
+            </p>
+
+            <p class="text">Example:</p>
+            <pre><code class="language-typescript">const options = {
+  attributes: {
+    id: "funtext",
+    data: "some_data"
+  }
+}
+</code></pre>
+          </section>
+
+          <div class="seperator seperator--thin"></div>
+
+          <section class="container container--property">
+            <h4 class="title title--property">Accessibility</h4>
+            <p>
+              Accessibility provides support for screen-readers and people with
+              poor eyesight. This is done with
+              <span class="text text--highlight">aira</span>, which adds a label
+              for screen readers and hides the animated element,
+              <span class="text text--highlight">prefersContrast</span>, which
+              adds artificial contrast to elements and
+              <span class="text text--highlight">prefersReducedMotion</span>,
+              which prevents animated text from moving.
+            </p>
+
+            <pre><code class="language-typescript">const options = {
+  accessibility: {
+    aria: true,                  // Set to true by default
+    prefersContrast: 0.25,       // Set to 0.15 by default
+    prefersReducedMotion: true,  // Set to false by default
+  }
+}
+</code></pre>
+          </section>
+
+          <div class="seperator seperator--thin"></div>
+
+          <section class="container container--property">
+            <h4 class="title title--property">Mode</h4>
+            <p class="text">
+              Toggles the
+              <span class="text text--highlight">mode</span> property of the
+              shadow dom. If set to true allows outside javascript to access the
+              funtext element.
+            </p>
+
+            <p class="text">Example:</p>
+            <pre><code class="language-typescript">const options = {
+  mode: true,  // Set to false by default
+}
+</code></pre>
+          </section>
+
+          <div class="seperator seperator--thin"></div>
+
+          <section class="container container--property">
+            <h4 class="title title--property">Global</h4>
+            <p class="text">
+              So far all settings have effected individual elements but we can
+              also change ioptions globally to apply to all elements. These
+              global options can overwriten by the elements local settings.
+            </p>
+
+            <p class="text">Example:</p>
+            <pre><code class="language-typescript">// alternative FunText.setOptions({ ... })
+FunText.options = {
+  ...
+}
+</code></pre>
+          </section>
         </section>
 
         <div class="seperator"></div>
@@ -724,6 +960,29 @@ const filter = [
           <h3 class="title title--page" id="documentation__controls">
             Controls
           </h3>
+
+          <p class="text">
+            Controls allow for modification and manual control of the animated
+            text.
+          </p>
+
+          <div class="seperator seperator--thin"></div>
+
+          <section class="container container--property">
+            <h4 class="title title--property">Mount and unmount</h4>
+          </section>
+
+          <div class="seperator seperator--thin"></div>
+
+          <section class="container container--property">
+            <h4 class="title title--property">Setters</h4>
+          </section>
+
+          <div class="seperator seperator--thin"></div>
+
+          <section class="container container--property">
+            <h4 class="title title--property">Playstate</h4>
+          </section>
         </section>
       </section>
 
