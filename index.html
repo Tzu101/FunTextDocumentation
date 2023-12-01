@@ -72,21 +72,39 @@
         </li>
 
         <li class="list__element">
-          <a class="list__link" href="#documentation">Documentation</a>
+          <a class="list__link" href="#examples">Examples</a>
 
           <ul class="list list--recursive">
             <li class="list__element">
-              <a class="list__link" href="#documentation__setup">Setup</a>
+              <a class="list__link" href="#examples__setup">Setup</a>
             </li>
 
             <li class="list__element">
-              <a class="list__link" href="#documentation__scope">Scope</a>
+              <a class="list__link" href="#examples__scope">Scope</a>
             </li>
 
             <li class="list__element">
-              <a class="list__link" href="#documentation__steps">Steps</a>
+              <a class="list__link" href="#examples__steps">Steps</a>
             </li>
 
+            <li class="list__element">
+              <a class="list__link" href="#examples__animations">Animations</a>
+            </li>
+
+            <li class="list__element">
+              <a class="list__link" href="#examples__options">Options</a>
+            </li>
+
+            <li class="list__element">
+              <a class="list__link" href="#examples__controls">Controls</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="list__element">
+          <a class="list__link" href="#documentation">Documentation</a>
+
+          <ul class="list list--recursive">
             <li class="list__element">
               <a class="list__link" href="#documentation__animations"
                 >Animations</a
@@ -95,10 +113,6 @@
 
             <li class="list__element">
               <a class="list__link" href="#documentation__options">Options</a>
-            </li>
-
-            <li class="list__element">
-              <a class="list__link" href="#documentation__controls">Controls</a>
             </li>
           </ul>
         </li>
@@ -199,12 +213,12 @@ $ pnpm install funtext
       <div class="seperator seperator--thick"></div>
 
       <section class="container container--chapter">
-        <h2 class="title title--chapter" id="documentation">Documentation</h2>
+        <h2 class="title title--chapter" id="examples">Examples</h2>
 
         <div class="seperator"></div>
 
         <section class="container container--page">
-          <h3 class="title title--page" id="documentation__setup">Setup</h3>
+          <h3 class="title title--page" id="examples__setup">Setup</h3>
           <p class="text">
             To init a funtext instance we pass it a container and the list of
             animations.
@@ -267,7 +281,7 @@ if (container) {
         <div class="seperator"></div>
 
         <section class="container container--page">
-          <h3 class="title title--page" id="documentation__scope">Scope</h3>
+          <h3 class="title title--page" id="examples__scope">Scope</h3>
           <p class="text">
             A scope is an animation property that determines how the text is
             divided into individual elements.
@@ -397,7 +411,7 @@ funtext_word.mount()
         <div class="seperator"></div>
 
         <section class="container container--page">
-          <h3 class="title title--page" id="documentation__steps">Steps</h3>
+          <h3 class="title title--page" id="examples__steps">Steps</h3>
           <p class="text">
             Steps determine the keyframes of the animation. Passing a string
             gives the final value, passign an array gives a list of values at
@@ -457,7 +471,7 @@ const object_animations = [
         <div class="seperator"></div>
 
         <section class="container container--page">
-          <h3 class="title title--page" id="documentation__animations">
+          <h3 class="title title--page" id="examples__animations">
             Animations
           </h3>
 
@@ -715,7 +729,7 @@ const filter = [
         <div class="seperator"></div>
 
         <section class="container container--page">
-          <h3 class="title title--page" id="documentation__options">Options</h3>
+          <h3 class="title title--page" id="examples__options">Options</h3>
           <p class="text">
             Options are an optional third parameter that provide additional
             customization, accessibility support and help shorten
@@ -957,9 +971,7 @@ FunText.options = {
         <div class="seperator"></div>
 
         <section class="container container--page">
-          <h3 class="title title--page" id="documentation__controls">
-            Controls
-          </h3>
+          <h3 class="title title--page" id="examples__controls">Controls</h3>
 
           <p class="text">
             Controls allow for modification and manual control of the animated
@@ -1268,6 +1280,491 @@ toggle_all.addEventListener("click", () => {
             </div>
           </section>
         </section>
+      </section>
+
+      <section class="container container--chapter">
+        <h2 class="title title--chapter" id="documentation">Documentation</h2>
+
+        <div class="grid">
+          <div class="grid__title grid__element">FunText constructor</div>
+          <div class="grid__element grid__column">Parameter</div>
+          <div class="grid__element grid__column">Type</div>
+          <div class="grid__element grid__column">Default</div>
+          <div class="grid__element grid__column">Description</div>
+
+          <div class="grid__element">container</div>
+          <div class="grid__element">HTMLElement</div>
+          <div class="grid__element grid__element--bold">Required</div>
+          <div class="grid__element">
+            Container element for the text animations
+          </div>
+
+          <div class="grid__element">animations</div>
+          <div class="grid__element">InputAnimation[]</div>
+          <div class="grid__element grid__element--bold">Required</div>
+          <div class="grid__element">
+            Animations that are applid to the text
+          </div>
+
+          <div class="grid__element">animations</div>
+          <div class="grid__element">InputAnimation[]</div>
+          <div class="grid__element">Object</div>
+          <div class="grid__element">Additional options</div>
+        </div>
+
+        <section class="container container--page">
+          <h3 class="title title--page" id="documentation__animations">
+            Animations
+          </h3>
+
+          <div class="grid">
+            <div class="grid__title grid__element">Default animation</div>
+            <div class="grid__element grid__column">Parameter</div>
+            <div class="grid__element grid__column">Type</div>
+            <div class="grid__element grid__column">Default</div>
+            <div class="grid__element grid__column">Description</div>
+
+            <div class="grid__element">type</div>
+            <div class="grid__element">"default"</div>
+            <div class="grid__element">"default"</div>
+            <div class="grid__element">Type of the animation</div>
+
+            <div class="grid__element">scope</div>
+            <div class="grid__element">string | RegExp</div>
+            <div class="grid__element grid__element--bold">Required</div>
+            <div class="grid__element">Scope of the animation</div>
+
+            <div class="grid__element">property</div>
+            <div class="grid__element">string</div>
+            <div class="grid__element grid__element--bold">Required</div>
+            <div class="grid__element">Animated property</div>
+
+            <div class="grid__element">steps</div>
+            <div class="grid__element">string | array | object</div>
+            <div class="grid__element grid__element--bold">Required</div>
+            <div class="grid__element">Animation keyframes</div>
+
+            <div class="grid__element">duration</div>
+            <div class="grid__element">number</div>
+            <div class="grid__element grid__element--bold">Required</div>
+            <div class="grid__element">Duration of the animation</div>
+
+            <div class="grid__element">delay</div>
+            <div class="grid__element">number</div>
+            <div class="grid__element">0</div>
+            <div class="grid__element">Delay of the animation</div>
+
+            <div class="grid__element">iteration</div>
+            <div class="grid__element">number | string</div>
+            <div class="grid__element">1</div>
+            <div class="grid__element">Number of iterations</div>
+
+            <div class="grid__element">direction</div>
+            <div class="grid__element">string</div>
+            <div class="grid__element">"normal"</div>
+            <div class="grid__element">Direction of the animation</div>
+
+            <div class="grid__element">timing</div>
+            <div class="grid__element">string</div>
+            <div class="grid__element">"linear"</div>
+            <div class="grid__element">Timing function of the animation</div>
+
+            <div class="grid__element">fill</div>
+            <div class="grid__element">string</div>
+            <div class="grid__element">"none"</div>
+            <div class="grid__element">Fill mode of the animation</div>
+
+            <div class="grid__element">state</div>
+            <div class="grid__element">string</div>
+            <div class="grid__element">"playing"</div>
+            <div class="grid__element">Play state of the animation</div>
+
+            <div class="grid__element">offset</div>
+            <div class="grid__element">number | Function</div>
+            <div class="grid__element">0</div>
+            <div class="grid__element">Offset between scoped elements</div>
+
+            <div class="grid__element">sync</div>
+            <div class="grid__element">InputAnimationSync</div>
+            <div class="grid__element">null</div>
+            <div class="grid__element">Sync of the animation</div>
+
+            <div class="grid__element">onStart</div>
+            <div class="grid__element">Function</div>
+            <div class="grid__element">null</div>
+            <div class="grid__element">Runs at the start of the animation</div>
+
+            <div class="grid__element">onEnd</div>
+            <div class="grid__element">Function</div>
+            <div class="grid__element">null</div>
+            <div class="grid__element">Runs at the end of the animation</div>
+
+            <div class="grid__element">onIterationStart</div>
+            <div class="grid__element">Function</div>
+            <div class="grid__element">null</div>
+            <div class="grid__element">Runs at the start of the iteration</div>
+
+            <div class="grid__element">onIterationEnd</div>
+            <div class="grid__element">Function</div>
+            <div class="grid__element">null</div>
+            <div class="grid__element">Runs at the end of the iteration</div>
+
+            <div class="grid__element">onCancel</div>
+            <div class="grid__element">Function</div>
+            <div class="grid__element">null</div>
+            <div class="grid__element">Runs if the animation is canceled</div>
+          </div>
+
+          <div class="grid">
+            <div class="grid__title grid__element">Animation Sync</div>
+            <div class="grid__element grid__column">Parameter</div>
+            <div class="grid__element grid__column">Type</div>
+            <div class="grid__element grid__column">Default</div>
+            <div class="grid__element grid__column">Description</div>
+
+            <div class="grid__element">duration</div>
+            <div class="grid__element">number</div>
+            <div class="grid__element grid__element--bold">Required</div>
+            <div class="grid__element">
+              Duration to which the animation is synced to
+            </div>
+
+            <div class="grid__element">location</div>
+            <div class="grid__element">number | string</div>
+            <div class="grid__element grid__element--bold">Required</div>
+            <div class="grid__element">
+              Location to which the animation is synced to
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="grid__title grid__element">
+              Transform / Filter animations
+            </div>
+            <div class="grid__element grid__column">Parameter</div>
+            <div class="grid__element grid__column">Type</div>
+            <div class="grid__element grid__column">Default</div>
+            <div class="grid__element grid__column">Description</div>
+
+            <div class="grid__element">type</div>
+            <div class="grid__element">"transform" | "filter"</div>
+            <div class="grid__element grid__element--bold">Required</div>
+            <div class="grid__element">Type of the animation</div>
+
+            <div class="grid__element">animations</div>
+            <div class="grid__element">
+              TransformAnimation[] | FilterAnimation[]
+            </div>
+            <div class="grid__element grid__element--bold">Required</div>
+            <div class="grid__element">
+              Sub-animations relating to the transform / filter animation
+              properties
+            </div>
+
+            <div class="grid__element">scope</div>
+            <div class="grid__element">string | RegExp</div>
+            <div class="grid__element grid__element--bold">Required</div>
+            <div class="grid__element">Scope of the animation</div>
+
+            <div class="grid__element">delay</div>
+            <div class="grid__element">number</div>
+            <div class="grid__element">0</div>
+            <div class="grid__element">Delay of the animation</div>
+
+            <div class="grid__element">iteration</div>
+            <div class="grid__element">number | string</div>
+            <div class="grid__element">1</div>
+            <div class="grid__element">Number of iterations</div>
+
+            <div class="grid__element">direction</div>
+            <div class="grid__element">string</div>
+            <div class="grid__element">"normal"</div>
+            <div class="grid__element">Direction of the animation</div>
+
+            <div class="grid__element">timing</div>
+            <div class="grid__element">string</div>
+            <div class="grid__element">"linear"</div>
+            <div class="grid__element">Timing function of the animation</div>
+
+            <div class="grid__element">fill</div>
+            <div class="grid__element">string</div>
+            <div class="grid__element">"none"</div>
+            <div class="grid__element">Fill mode of the animation</div>
+
+            <div class="grid__element">state</div>
+            <div class="grid__element">string</div>
+            <div class="grid__element">"playing"</div>
+            <div class="grid__element">Play state of the animation</div>
+
+            <div class="grid__element">offset</div>
+            <div class="grid__element">number | Function</div>
+            <div class="grid__element">0</div>
+            <div class="grid__element">Offset between scoped elements</div>
+
+            <div class="grid__element">sync</div>
+            <div class="grid__element">InputAnimationSync</div>
+            <div class="grid__element">null</div>
+            <div class="grid__element">Sync of the animation</div>
+
+            <div class="grid__element">onStart</div>
+            <div class="grid__element">Function</div>
+            <div class="grid__element">null</div>
+            <div class="grid__element">Runs at the start of the animation</div>
+
+            <div class="grid__element">onEnd</div>
+            <div class="grid__element">Function</div>
+            <div class="grid__element">null</div>
+            <div class="grid__element">Runs at the end of the animation</div>
+
+            <div class="grid__element">onIterationStart</div>
+            <div class="grid__element">Function</div>
+            <div class="grid__element">null</div>
+            <div class="grid__element">Runs at the start of the iteration</div>
+
+            <div class="grid__element">onIterationEnd</div>
+            <div class="grid__element">Function</div>
+            <div class="grid__element">null</div>
+            <div class="grid__element">Runs at the end of the iteration</div>
+
+            <div class="grid__element">onCancel</div>
+            <div class="grid__element">Function</div>
+            <div class="grid__element">null</div>
+            <div class="grid__element">Runs if the animation is canceled</div>
+          </div>
+
+          <div class="grid">
+            <div class="grid__title grid__element">
+              Transform / Filter animation
+            </div>
+            <div class="grid__element grid__column">Parameter</div>
+            <div class="grid__element grid__column">Type</div>
+            <div class="grid__element grid__column">Default</div>
+            <div class="grid__element grid__column">Description</div>
+
+            <div class="grid__element">property</div>
+            <div class="grid__element">string</div>
+            <div class="grid__element grid__element--bold">Required</div>
+            <div class="grid__element">Animated property</div>
+
+            <div class="grid__element">steps</div>
+            <div class="grid__element">string | array | object</div>
+            <div class="grid__element grid__element--bold">Required</div>
+            <div class="grid__element">Animation keyframes</div>
+
+            <div class="grid__element">unit</div>
+            <div class="grid__element">string</div>
+            <div class="grid__element grid__element--bold">Required</div>
+            <div class="grid__element">Unit of the given steps</div>
+
+            <div class="grid__element">duration</div>
+            <div class="grid__element">number</div>
+            <div class="grid__element grid__element--bold">Required</div>
+            <div class="grid__element">Duration of the animation</div>
+
+            <div class="grid__element">delay</div>
+            <div class="grid__element">number</div>
+            <div class="grid__element">0</div>
+            <div class="grid__element">Delay of the animation</div>
+          </div>
+        </section>
+
+        <section class="container container--page">
+          <h3 class="title title--page" id="documentation__options">Options</h3>
+
+          <div class="grid">
+            <div class="grid__title grid__element">Animation options</div>
+            <div class="grid__element grid__column">Parameter</div>
+            <div class="grid__element grid__column">Type</div>
+            <div class="grid__element grid__column">Default</div>
+            <div class="grid__element grid__column">Description</div>
+
+            <div class="grid__element">text</div>
+            <div class="grid__element">string</div>
+            <div class="grid__element">null</div>
+            <div class="grid__element">Text to be animated</div>
+
+            <div class="grid__element">defaults</div>
+            <div class="grid__element">DefaultProperties</div>
+            <div class="grid__element">null</div>
+            <div class="grid__element">Default values for animations</div>
+
+            <div class="grid__element">tags</div>
+            <div class="grid__element">Tags</div>
+            <div class="grid__element">null</div>
+            <div class="grid__element">
+              Html tags for the constructed elements
+            </div>
+
+            <div class="grid__element">css</div>
+            <div class="grid__element">CssOptions</div>
+            <div class="grid__element">null</div>
+            <div class="grid__element">Style for the constructed elements</div>
+
+            <div class="grid__element">attributes</div>
+            <div class="grid__element">Object</div>
+            <div class="grid__element">null</div>
+            <div class="grid__element">Attributes for the root element</div>
+
+            <div class="grid__element">accessibility</div>
+            <div class="grid__element">Accessibility</div>
+            <div class="grid__element">null</div>
+            <div class="grid__element">Accessibility options</div>
+
+            <div class="grid__element">openNode</div>
+            <div class="grid__element">boolean</div>
+            <div class="grid__element">false</div>
+            <div class="grid__element">
+              if true allows outside styles and javascript to access the
+              constructed elements
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="grid__title grid__element">Animated Properties</div>
+            <div class="grid__element grid__column">Parameter</div>
+            <div class="grid__element grid__column">Type</div>
+            <div class="grid__element grid__column">Default</div>
+            <div class="grid__element grid__column">Description</div>
+
+            <div class="grid__element">delay</div>
+            <div class="grid__element">number</div>
+            <div class="grid__element">0</div>
+            <div class="grid__element">Delay of the animation</div>
+
+            <div class="grid__element">iteration</div>
+            <div class="grid__element">number | string</div>
+            <div class="grid__element">1</div>
+            <div class="grid__element">Number of iterations</div>
+
+            <div class="grid__element">direction</div>
+            <div class="grid__element">string</div>
+            <div class="grid__element">"normal"</div>
+            <div class="grid__element">Direction of the animation</div>
+
+            <div class="grid__element">timing</div>
+            <div class="grid__element">string</div>
+            <div class="grid__element">"linear"</div>
+            <div class="grid__element">Timing function of the animation</div>
+
+            <div class="grid__element">fill</div>
+            <div class="grid__element">string</div>
+            <div class="grid__element">"none"</div>
+            <div class="grid__element">Fill mode of the animation</div>
+
+            <div class="grid__element">state</div>
+            <div class="grid__element">string</div>
+            <div class="grid__element">"playing"</div>
+            <div class="grid__element">Play state of the animation</div>
+
+            <div class="grid__element">offset</div>
+            <div class="grid__element">number | Function</div>
+            <div class="grid__element">0</div>
+            <div class="grid__element">Offset between scoped elements</div>
+
+            <div class="grid__element">sync</div>
+            <div class="grid__element">InputAnimationSync</div>
+            <div class="grid__element">null</div>
+            <div class="grid__element">Sync of the animation</div>
+          </div>
+        </section>
+
+        <div class="grid">
+          <div class="grid__title grid__element">Tags</div>
+          <div class="grid__element grid__column">Parameter</div>
+          <div class="grid__element grid__column">Type</div>
+          <div class="grid__element grid__column">Default</div>
+          <div class="grid__element grid__column">Description</div>
+
+          <div class="grid__element">container</div>
+          <div class="grid__element">string</div>
+          <div class="grid__element">"div"</div>
+          <div class="grid__element">Tag for the container element</div>
+
+          <div class="grid__element">text</div>
+          <div class="grid__element">string</div>
+          <div class="grid__element">"p"</div>
+          <div class="grid__element">Tag for the text element</div>
+
+          <div class="grid__element">break</div>
+          <div class="grid__element">string</div>
+          <div class="grid__element">"br"</div>
+          <div class="grid__element">Tag for the break element</div>
+        </div>
+
+        <div class="grid">
+          <div class="grid__title grid__element">Css Options</div>
+          <div class="grid__element grid__column">Parameter</div>
+          <div class="grid__element grid__column">Type</div>
+          <div class="grid__element grid__column">Default</div>
+          <div class="grid__element grid__column">Description</div>
+
+          <div class="grid__element">default</div>
+          <div class="grid__element">string</div>
+          <div class="grid__element">null</div>
+          <div class="grid__element">Default style</div>
+
+          <div class="grid__element">root</div>
+          <div class="grid__element">string</div>
+          <div class="grid__element">null</div>
+          <div class="grid__element">Root element style</div>
+
+          <div class="grid__element">container</div>
+          <div class="grid__element">string</div>
+          <div class="grid__element">null</div>
+          <div class="grid__element">Container element style</div>
+
+          <div class="grid__element">text</div>
+          <div class="grid__element">string</div>
+          <div class="grid__element">null</div>
+          <div class="grid__element">Text element style</div>
+
+          <div class="grid__element">break</div>
+          <div class="grid__element">string</div>
+          <div class="grid__element">null</div>
+          <div class="grid__element">Break element style</div>
+
+          <div class="grid__element">raw</div>
+          <div class="grid__element">string</div>
+          <div class="grid__element">null</div>
+          <div class="grid__element">Raw inserted style</div>
+
+          <div class="grid__element">dark</div>
+          <div class="grid__element">CssOptions</div>
+          <div class="grid__element">null</div>
+          <div class="grid__element">Dark mode alternative style</div>
+
+          <div class="grid__element">number</div>
+          <div class="grid__element">CssOptions</div>
+          <div class="grid__element">null</div>
+          <div class="grid__element">Max width breakpoint styles</div>
+        </div>
+
+        <div class="grid">
+          <div class="grid__title grid__element">Accessibility</div>
+          <div class="grid__element grid__column">Parameter</div>
+          <div class="grid__element grid__column">Type</div>
+          <div class="grid__element grid__column">Default</div>
+          <div class="grid__element grid__column">Description</div>
+
+          <div class="grid__element">aria</div>
+          <div class="grid__element">boolean</div>
+          <div class="grid__element">true</div>
+          <div class="grid__element">Aria label for screen readers</div>
+
+          <div class="grid__element">prefersContrast</div>
+          <div class="grid__element">number</div>
+          <div class="grid__element">15</div>
+          <div class="grid__element">
+            Applied contrast for user that specify it
+          </div>
+
+          <div class="grid__element">prefersReducedMotion</div>
+          <div class="grid__element">boolean</div>
+          <div class="grid__element">false</div>
+          <div class="grid__element">
+            Reduces motion for user that specify it
+          </div>
+        </div>
       </section>
     </section>
   </body>
