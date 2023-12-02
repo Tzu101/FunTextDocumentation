@@ -114,6 +114,10 @@
             <li class="list__element">
               <a class="list__link" href="#documentation__options">Options</a>
             </li>
+
+            <li class="list__element">
+              <a class="list__link" href="#documentation__controls">Controls</a>
+            </li>
           </ul>
         </li>
 
@@ -1763,6 +1767,192 @@ toggle_all.addEventListener("click", () => {
           <div class="grid__element">false</div>
           <div class="grid__element">
             Reduces motion for user that specify it
+          </div>
+        </div>
+      </section>
+
+      <section class="container container--page">
+        <h3 class="title title--page" id="documentation__controls">Controls</h3>
+
+        <div class="grid">
+          <div class="grid__title grid__element">Build</div>
+          <div class="grid__element grid__column">Function</div>
+          <div class="grid__element grid__column">Parameter</div>
+          <div class="grid__element grid__column">Return value</div>
+          <div class="grid__element grid__column">Description</div>
+
+          <div class="grid__element">mount</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">FunText</div>
+          <div class="grid__element">
+            Shows the animated text in the given container
+          </div>
+
+          <div class="grid__element">unmount</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">FunText</div>
+          <div class="grid__element">
+            Hides the animated text in the given container
+          </div>
+
+          <div class="grid__element">rebuild</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">FunText</div>
+          <div class="grid__element">
+            Rebuilds the html and style for the animated text
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="grid__title grid__element">Getters and Setters</div>
+          <div class="grid__element grid__column">Function</div>
+          <div class="grid__element grid__column">Parameter</div>
+          <div class="grid__element grid__column">Return value</div>
+          <div class="grid__element grid__column">Description</div>
+
+          <div class="grid__element">getContainer</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">HTMLElement</div>
+          <div class="grid__element">Gets the funtext container</div>
+
+          <div class="grid__element">setContainer</div>
+          <div class="grid__element">HTMLElement</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">Sets the funtext container</div>
+
+          <div class="grid__element">getOptions</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">Options</div>
+          <div class="grid__element">Gets the funtext options</div>
+
+          <div class="grid__element">setOptions</div>
+          <div class="grid__element">InputOptions</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">Sets the funtext options</div>
+
+          <div class="grid__element">getAnimations</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">InputAnimations[]</div>
+          <div class="grid__element">Gets the funtext animations</div>
+
+          <div class="grid__element">setAnimations</div>
+          <div class="grid__element">InputAnimations[]</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">Sets the funtext animations</div>
+        </div>
+
+        <p class="text">
+          An alternative to getters and setters is to use funtext.container,
+          funtext.options, funtext.animations directly.
+        </p>
+
+        <div class="grid">
+          <div class="grid__title grid__element">Playstate</div>
+          <div class="grid__element grid__column">Function</div>
+          <div class="grid__element grid__column">Parameter</div>
+          <div class="grid__element grid__column">Return value</div>
+          <div class="grid__element grid__column">Description</div>
+
+          <div class="grid__element">isPlaying</div>
+          <div class="grid__element">AnimationId</div>
+          <div class="grid__element">boolean</div>
+          <div class="grid__element">
+            Returns true if the specified animation is playing
+          </div>
+
+          <div class="grid__element">isPlayingAny</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">boolean</div>
+          <div class="grid__element">
+            Returns true if any animation is playing
+          </div>
+
+          <div class="grid__element">isPlayingAll</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">boolean</div>
+          <div class="grid__element">
+            Returns true if all animations are playing
+          </div>
+
+          <div class="grid__element">isPaused</div>
+          <div class="grid__element">AnimationId</div>
+          <div class="grid__element">boolean</div>
+          <div class="grid__element">
+            Returns true if the specified animation is paused
+          </div>
+
+          <div class="grid__element">isPausedAny</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">boolean</div>
+          <div class="grid__element">
+            Returns true if any animation is paused
+          </div>
+
+          <div class="grid__element">isPausedAll</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">boolean</div>
+          <div class="grid__element">
+            Returns true if all animations are paused
+          </div>
+
+          <div class="grid__element">play</div>
+          <div class="grid__element">AnimationId</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">Plays the specified animation</div>
+
+          <div class="grid__element">playAll</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">Plays all animations</div>
+
+          <div class="grid__element">pause</div>
+          <div class="grid__element">AnimationId</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">Pauses the specified animation</div>
+
+          <div class="grid__element">pauseAll</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">Pauses all animations</div>
+
+          <div class="grid__element">toggle</div>
+          <div class="grid__element">AnimationId</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">Toggles the specified animation</div>
+
+          <div class="grid__element">toggleAll</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">Toggles all animations</div>
+
+          <div class="grid__element">reset</div>
+          <div class="grid__element">AnimationId</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">Resets the specified animation</div>
+
+          <div class="grid__element">resetAll</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">void</div>
+          <div class="grid__element">Resets all animations</div>
+        </div>
+
+        <div class="grid">
+          <div class="grid__title grid__element">Animation Id</div>
+          <div class="grid__element grid__column">Parameter</div>
+          <div class="grid__element grid__column">Type</div>
+          <div class="grid__element grid__column">Default</div>
+          <div class="grid__element grid__column">Description</div>
+
+          <div class="grid__element">property</div>
+          <div class="grid__element">string</div>
+          <div class="grid__element grid__element--bold">Required</div>
+          <div class="grid__element">Property of the specefied animation</div>
+
+          <div class="grid__element">scope</div>
+          <div class="grid__element">number | "word" | "letter"</div>
+          <div class="grid__element grid__element--bold">Required</div>
+          <div class="grid__element">
+            Scope priority of the specefied animation
           </div>
         </div>
       </section>
