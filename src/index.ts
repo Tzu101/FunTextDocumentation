@@ -722,7 +722,7 @@ const fun_animations_custom_transform_animations: InputAnimation[] = [
   {
     scope: "letter",
     type: "transform",
-    animations: [
+    properties: [
       {
         property: "translateY",
         duration: 5,
@@ -747,7 +747,7 @@ const fun_animations_custom_filter_animations: InputAnimation[] = [
   {
     scope: "letter",
     type: "filter",
-    animations: [
+    properties: [
       {
         property: "opacity",
         duration: 5,
