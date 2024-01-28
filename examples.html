@@ -5,19 +5,299 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FunText</title>
   </head>
-  <body>
-    Test
-  </body>
-
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+
+      font-family: Helvetica;
+    }
+
+    .example {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      margin-top: 5rem;
+      margin-left: 3rem;
+
+      font-size: 2rem;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+    }
+
+    .button {
+      padding: 0.25rem;
+
+      font-size: 1.75rem;
+      border: 2px solid;
+      background-color: #ddd;
+    }
+
+    .button:hover {
+      background-color: #bbb;
+    }
+
+    #loading,
+    #highlight {
+      height: 43px;
+    }
+    #highlight {
+      color: red;
+    }
+    #hover {
+      width: fit-content;
+    }
+    #jump {
+      margin-top: 3rem;
+      margin-bottom: 4rem;
     }
   </style>
 
+  <body>
+    <div class="example">
+      <h2 class="title">Example 1</h2>
+
+      <div id="loading">Loaded data</div>
+
+      <div class="buttons">
+        <button class="button" onclick="loading.mount()">Mount</button>
+        <button class="button" onclick="loading.unmount()">Unmount</button>
+      </div>
+    </div>
+
+    <div class="example">
+      <h2 class="title">Example 2</h2>
+
+      <div>
+        The end of the sentance is
+        <span id="highlight">highlighted</span>
+      </div>
+
+      <div class="buttons">
+        <button class="button" onclick="highlight.playAll()">Play</button>
+        <button class="button" onclick="highlight.pauseAll()">Pause</button>
+        <button class="button" onclick="highlight.resetAll()">Reset</button>
+      </div>
+    </div>
+
+    <div class="example">
+      <h2 class="title">Example 3</h2>
+
+      <span id="hover">This text will vanish on hover</span>
+
+      <div class="buttons">
+        <button class="button" onclick="hover.resetAll()">Reset</button>
+      </div>
+    </div>
+
+    <div class="example">
+      <h2 class="title">Example 4</h2>
+
+      <span id="fade">HELLO</span>
+
+      <div class="buttons">
+        <button class="button" onclick="fade.resetAll(); fade.playAll()">
+          Play
+        </button>
+      </div>
+    </div>
+
+    <div class="example">
+      <h2 class="title">Example 5</h2>
+
+      <span id="jump">WORLD</span>
+
+      <div class="buttons">
+        <button class="button" onclick="jump.resetAll(); jump.playAll()">
+          Play
+        </button>
+      </div>
+    </div>
+  </body>
+
+  <script src="funtext.min.js"></script>
   <script>
-    console.log("Hello world");
+    const loading = new FunText(
+      document.getElementById("loading"),
+      [
+        {
+          property: "translate",
+          steps: "0 -0.4rem",
+          duration: 0.45,
+          iteration: "infinite",
+          direction: "alternate",
+          offset: (index) => {
+            if (index <= 6) {
+              return 1000000;
+            } else {
+              return (index - 6) * 0.15;
+            }
+          },
+        },
+      ],
+      {
+        text: "Loading...",
+        css: {
+          raw: ".funtext__text:nth-last-child(-n+3) { font-size: 2.25rem; }",
+        },
+      }
+    );
+    loading.mount();
+
+    const highlight = new FunText(document.getElementById("highlight"), [
+      {
+        property: "color",
+        duration: 2,
+        steps: ["orange", "red"],
+        iteration: "infinite",
+        sync: {
+          location: 0,
+          duration: 5,
+        },
+        offset: 0.2,
+      },
+    ]);
+    highlight.mount();
+    highlight.pauseAll();
+
+    const hover_container = document.getElementById("hover");
+    const hover = new FunText(
+      hover_container,
+      [
+        {
+          property: "color",
+          steps: "white",
+          duration: 1,
+          offset: (index) => {
+            if (index > 15) index = 30 - index;
+
+            return 15 * 0.03 - index * 0.03;
+          },
+        },
+        {
+          type: "filter",
+          properties: [
+            {
+              property: "blur",
+              unit: "px",
+              steps: "100",
+              duration: 1.2,
+            },
+            {
+              property: "opacity",
+              steps: "0",
+              duration: 1.1,
+            },
+          ],
+          offset: (index) => {
+            if (index > 15) index = 30 - index;
+
+            return 15 * 0.03 - index * 0.03;
+          },
+          fill: "forwards",
+        },
+      ],
+      {
+        css: {
+          root: "width: fit-content;",
+        },
+      }
+    );
+
+    hover.mount();
+    hover.pauseAll();
+
+    hover_container.addEventListener("mouseover", () => {
+      hover.playAll();
+    });
+    hover_container.addEventListener("mouseout", () => {
+      hover.pauseAll();
+    });
+
+    const fade = new FunText(
+      document.getElementById("fade"),
+      [
+        {
+          property: "transform",
+          steps: {
+            100: "translate(40%, 0)",
+          },
+          duration: 3,
+        },
+        {
+          property: "text-shadow",
+          steps: {
+            50: "0 20px 25px rgba(255, 0, 0, 1)",
+          },
+          duration: 3,
+        },
+      ],
+      {
+        css: {
+          root: "font-size: 0; padding: 1rem;",
+          text: "color: white; font-size: 5rem;",
+        },
+        defaults: {
+          offset: 0.5,
+          timing: "ease-in-out",
+        },
+      }
+    );
+    fade.mount();
+    fade.pauseAll();
+
+    const jump = new FunText(
+      document.getElementById("jump"),
+      [
+        {
+          property: "transform",
+          steps: {
+            50: "translate(0, 0) rotate(-4deg)",
+          },
+          duration: 2,
+        },
+        {
+          property: "text-shadow",
+          steps: {
+            33: "0 30px #a00, 0 60px #d00",
+            50: "0 0px #0a0, 0 0px #0d0",
+            66.67: "0 -30px #00a, 0 -60px #00d",
+          },
+          duration: 2,
+        },
+      ],
+      {
+        css: {
+          text: "text-shadow: 0 0px #f3c623, 0 0px #f2aaaa; transform: translate(0, 100%) rotate(4deg);",
+        },
+        defaults: {
+          offset: 0.12,
+          timing: "ease-in-out",
+        },
+      }
+    );
+    jump.mount();
+    jump.pauseAll();
   </script>
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
 </html>
